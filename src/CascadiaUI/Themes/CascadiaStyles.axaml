@@ -126,16 +126,6 @@
     <Setter Property="CornerRadius" Value="{Binding $parent[NumericUpDown].CornerRadius}" />
     <Setter Property="MinWidth" Value="0" />
   </Style>
-  <!-- Slim steppers (Fluent's are 34px each), so narrow number boxes keep room for the value. -->
-  <Style Selector="ButtonSpinner /template/ RepeatButton#PART_IncreaseButton, ButtonSpinner /template/ RepeatButton#PART_DecreaseButton">
-    <Setter Property="MinWidth" Value="24" />
-    <Setter Property="Width" Value="24" />
-    <Setter Property="Padding" Value="0" />
-  </Style>
-  <Style Selector="ButtonSpinner /template/ RepeatButton > PathIcon">
-    <Setter Property="Width" Value="10" />
-    <Setter Property="Height" Value="10" />
-  </Style>
 
   <!-- ===== Lists, trees, menus: inset rounded rows, macOS sidebar style ===== -->
   <Style Selector="ListBox">
