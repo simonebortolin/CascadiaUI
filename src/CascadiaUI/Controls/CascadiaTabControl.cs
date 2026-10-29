@@ -76,6 +76,7 @@ public class CascadiaTabControl : TabControl
     private const double TearOutDistance = 36;
 
     private TabItem? _pressedTab;
+    private PointerPressedEventArgs? _pressEvent;
     private Point _pressPoint;
     private bool _isDragging;
     private ScrollViewer? _stripScroller;
@@ -387,6 +388,7 @@ public class CascadiaTabControl : TabControl
         }
 
         _pressedTab = FindTab(e.Source);
+        _pressEvent = e;
         _pressPoint = e.GetPosition(this);
         _isDragging = false;
     }
@@ -436,11 +438,11 @@ public class CascadiaTabControl : TabControl
         if ((stripPos.Y < -TearOutDistance || stripPos.Y > strip.Bounds.Height + TearOutDistance)
             && HasTearOutHandlers())
         {
-            var tab = _pressedTab;
-            var item = ItemFromContainer(tab);
+            var item = ItemFromContainer(_pressedTab);
+            var press = _pressEvent!;
             EndDrag();
             e.Pointer.Capture(null);
-            RaiseEvent(new TabDraggedOutEventArgs(TabDraggedOutEvent, item, e));
+            RaiseEvent(new TabDraggedOutEventArgs(TabDraggedOutEvent, item, press));
             return;
         }
 
@@ -510,6 +512,7 @@ public class CascadiaTabControl : TabControl
     {
         _pressedTab?.Classes.Remove("dragging");
         _pressedTab = null;
+        _pressEvent = null;
         _isDragging = false;
     }
 
@@ -537,10 +540,10 @@ public class TabReorderedEventArgs(RoutedEvent routedEvent, object? item, int ol
     public int NewIndex { get; } = newIndex;
 }
 
-/// <summary>Raised when a tab is dragged off the strip. <see cref="PointerEventArgs"/> is the
-/// live pointer event, suitable for <c>DragDrop.DoDragDropAsync</c>.</summary>
-public class TabDraggedOutEventArgs(RoutedEvent routedEvent, object? item, PointerEventArgs pointerEventArgs)
+/// <summary>Raised when a tab is dragged off the strip. <see cref="TriggerEvent"/> is the press
+/// that started the drag - what <c>DragDrop.DoDragDropAsync</c> needs to take over from here.</summary>
+public class TabDraggedOutEventArgs(RoutedEvent routedEvent, object? item, PointerPressedEventArgs triggerEvent)
     : TabEventArgs(routedEvent, item)
 {
-    public PointerEventArgs PointerEventArgs { get; } = pointerEventArgs;
+    public PointerPressedEventArgs TriggerEvent { get; } = triggerEvent;
 }

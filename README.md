@@ -67,8 +67,8 @@ Application.Current!.RequestedThemeVariant = ThemeVariant.Dark;
 - **Closing**: `TabCloseRequested` is raised first (set `Handled` to veto), then `CloseTabCommand`
   runs with the item. With neither, the item is removed from the collection.
   `CascadiaTabControl.IsClosable="False"` on a `TabItem` pins it.
-- **Tear-out**: dragging a tab well above or below the strip raises `TabDraggedOut` with the live
-  `PointerEventArgs`, ready for `DragDrop.DoDragDropAsync`.
+- **Tear-out**: dragging a tab well above or below the strip raises `TabDraggedOut` with the
+  `PointerPressedEventArgs` that started the drag, ready for `DragDrop.DoDragDropAsync`.
 - Without `ExtendContentIntoTitleBar`, `CascadiaWindow` draws its own title bar (title plus
   `TitleBarContent`). Anything in your own title-bar content that needs clicks should set
   `cascadia:CascadiaWindow.IsTitleBarInteractive="True"`. Mark extra drag areas with
