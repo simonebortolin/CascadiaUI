@@ -1,0 +1,9 @@
+<Application xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cascadia="https://github.com/simonebortolin/CascadiaUI"
+             x:Class="CascadiaUI.Gallery.App"
+             RequestedThemeVariant="Default">
+  <Application.Styles>
+    <cascadia:CascadiaTheme />
+  </Application.Styles>
+</Application>

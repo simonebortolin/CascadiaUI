@@ -1,0 +1,473 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml">
+  <!-- Design tokens. Everything Cascadia draws goes through these keys, so an app can re-tint
+       any of them by redefining the key in its own Application.Resources. -->
+
+  <!-- Shape -->
+  <CornerRadius x:Key="ControlCornerRadius">6</CornerRadius>
+  <CornerRadius x:Key="OverlayCornerRadius">10</CornerRadius>
+  <CornerRadius x:Key="CascadiaCardCornerRadius">10</CornerRadius>
+  <CornerRadius x:Key="CascadiaTabCornerRadius">8,8,0,0</CornerRadius>
+  <CornerRadius x:Key="CascadiaPillCornerRadius">6</CornerRadius>
+
+  <!-- Sizing (CascadiaTheme.Density overrides these at runtime) -->
+  <x:Double x:Key="CascadiaTabItemHeight">34</x:Double>
+  <x:Double x:Key="CascadiaTitleBarHeight">42</x:Double>
+  <Thickness x:Key="ButtonPadding">12,5,12,6</Thickness>
+  <Thickness x:Key="TextControlBorderThemeThicknessFocused">1</Thickness>
+
+  <!-- Typography -->
+  <FontFamily x:Key="CascadiaMonoFontFamily">Cascadia Mono, Cascadia Code, Consolas, SF Mono, Menlo, JetBrains Mono, DejaVu Sans Mono, Liberation Mono, monospace</FontFamily>
+
+  <!-- Accent-derived brushes. The colours behind them are computed by CascadiaTheme from its
+       Accent property, so they follow runtime accent changes. -->
+  <SolidColorBrush x:Key="SystemControlHighlightListAccentLowBrush" Color="{DynamicResource CascadiaAccentSubtleColor}" />
+  <SolidColorBrush x:Key="SystemControlHighlightListAccentMediumBrush" Color="{DynamicResource CascadiaAccentSubtleHoverColor}" />
+  <SolidColorBrush x:Key="SystemControlHighlightListAccentHighBrush" Color="{DynamicResource CascadiaAccentSubtlePressedColor}" />
+  <SolidColorBrush x:Key="ComboBoxItemBackgroundSelected" Color="{DynamicResource CascadiaAccentSubtleColor}" />
+  <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPointerOver" Color="{DynamicResource CascadiaAccentSubtleHoverColor}" />
+  <SolidColorBrush x:Key="ComboBoxItemBackgroundSelectedPressed" Color="{DynamicResource CascadiaAccentSubtlePressedColor}" />
+  <SolidColorBrush x:Key="TreeViewItemBackgroundSelected" Color="{DynamicResource CascadiaAccentSubtleColor}" />
+  <SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPointerOver" Color="{DynamicResource CascadiaAccentSubtleHoverColor}" />
+  <SolidColorBrush x:Key="TreeViewItemBackgroundSelectedPressed" Color="{DynamicResource CascadiaAccentSubtlePressedColor}" />
+  <SolidColorBrush x:Key="CascadiaAccentSubtleBrush" Color="{DynamicResource CascadiaAccentSubtleColor}" />
+  <SolidColorBrush x:Key="CascadiaAccentSubtleHoverBrush" Color="{DynamicResource CascadiaAccentSubtleHoverColor}" />
+  <SolidColorBrush x:Key="CascadiaAccentSubtlePressedBrush" Color="{DynamicResource CascadiaAccentSubtlePressedColor}" />
+  <SolidColorBrush x:Key="CascadiaFocusRingBrush" Color="{DynamicResource CascadiaFocusRingColor}" />
+  <SolidColorBrush x:Key="CascadiaAccentBrush" Color="{DynamicResource SystemAccentColor}" />
+  <SolidColorBrush x:Key="CascadiaAccentForegroundBrush" Color="{DynamicResource CascadiaAccentForegroundColor}" />
+
+  <!-- Text on accent fills follows the accent's own contrast (white, or near-black on light accents). -->
+  <SolidColorBrush x:Key="AccentButtonForeground" Color="{DynamicResource CascadiaAccentForegroundColor}" />
+  <SolidColorBrush x:Key="AccentButtonForegroundPointerOver" Color="{DynamicResource CascadiaAccentForegroundColor}" />
+  <SolidColorBrush x:Key="AccentButtonForegroundPressed" Color="{DynamicResource CascadiaAccentForegroundColor}" />
+  <SolidColorBrush x:Key="ToggleButtonForegroundChecked" Color="{DynamicResource CascadiaAccentForegroundColor}" />
+  <SolidColorBrush x:Key="ToggleButtonForegroundCheckedPointerOver" Color="{DynamicResource CascadiaAccentForegroundColor}" />
+  <SolidColorBrush x:Key="ToggleButtonForegroundCheckedPressed" Color="{DynamicResource CascadiaAccentForegroundColor}" />
+
+  <ResourceDictionary.ThemeDictionaries>
+    <ResourceDictionary x:Key="Light">
+      <Color x:Key="CascadiaWindowBackgroundColor">#F3F3F3</Color>
+      <Color x:Key="CascadiaTitleBarBackgroundColor">#E9E9E9</Color>
+      <Color x:Key="CascadiaSurfaceColor">#FFFFFF</Color>
+      <Color x:Key="CascadiaSurfaceSecondaryColor">#F9F9F9</Color>
+      <Color x:Key="CascadiaCardColor">#FFFFFF</Color>
+      <Color x:Key="CascadiaCardStrokeColor">#E3E3E3</Color>
+      <Color x:Key="CascadiaControlFillColor">#FFFFFF</Color>
+      <Color x:Key="CascadiaControlFillHoverColor">#F7F7F7</Color>
+      <Color x:Key="CascadiaControlFillPressedColor">#F0F0F0</Color>
+      <Color x:Key="CascadiaControlFillDisabledColor">#F5F5F5</Color>
+      <Color x:Key="CascadiaControlStrokeColor">#D6D6D6</Color>
+      <Color x:Key="CascadiaControlStrokeStrongColor">#BDBDBD</Color>
+      <Color x:Key="CascadiaDividerColor">#E3E3E3</Color>
+      <Color x:Key="CascadiaTextPrimaryColor">#1A1A1A</Color>
+      <Color x:Key="CascadiaTextSecondaryColor">#5C5C5C</Color>
+      <Color x:Key="CascadiaTextTertiaryColor">#8A8A8A</Color>
+      <Color x:Key="CascadiaTextDisabledColor">#A8A8A8</Color>
+      <Color x:Key="CascadiaSubtleHoverColor">#0F000000</Color>
+      <Color x:Key="CascadiaSubtlePressedColor">#1A000000</Color>
+      <Color x:Key="CascadiaPopupColor">#FFFFFF</Color>
+      <Color x:Key="CascadiaPopupStrokeColor">#DEDEDE</Color>
+      <Color x:Key="CascadiaScrimColor">#99F3F3F3</Color>
+      <Color x:Key="CascadiaTrackFillColor">#E4E4E4</Color>
+      <Color x:Key="CascadiaSegmentSelectedColor">#FFFFFF</Color>
+      <Color x:Key="CascadiaSuccessColor">#1A7F45</Color>
+      <Color x:Key="CascadiaWarningColor">#9A6700</Color>
+      <Color x:Key="CascadiaErrorColor">#C42B1C</Color>
+      <Color x:Key="CascadiaDangerFillColor">#C42B1C</Color>
+      <Color x:Key="CascadiaInfoColor">#0F6CBD</Color>
+      <Color x:Key="CascadiaShadowColor">#1F000000</Color>
+      <Color x:Key="CascadiaShadowStrongColor">#33000000</Color>
+
+      <SolidColorBrush x:Key="CascadiaWindowBackgroundBrush" Color="{StaticResource CascadiaWindowBackgroundColor}" />
+      <SolidColorBrush x:Key="CascadiaTitleBarBackgroundBrush" Color="{StaticResource CascadiaTitleBarBackgroundColor}" />
+      <SolidColorBrush x:Key="CascadiaSurfaceBrush" Color="{StaticResource CascadiaSurfaceColor}" />
+      <SolidColorBrush x:Key="CascadiaSurfaceSecondaryBrush" Color="{StaticResource CascadiaSurfaceSecondaryColor}" />
+      <SolidColorBrush x:Key="CascadiaCardBrush" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="CascadiaCardStrokeBrush" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillBrush" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillHoverBrush" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillPressedBrush" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillDisabledBrush" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="CascadiaControlStrokeBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="CascadiaControlStrokeStrongBrush" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="CascadiaDividerBrush" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="CascadiaTextPrimaryBrush" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CascadiaTextSecondaryBrush" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="CascadiaTextTertiaryBrush" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="CascadiaTextDisabledBrush" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="CascadiaSubtleHoverBrush" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="CascadiaSubtlePressedBrush" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="CascadiaPopupBrush" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="CascadiaPopupStrokeBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="CascadiaScrimBrush" Color="{StaticResource CascadiaScrimColor}" />
+      <SolidColorBrush x:Key="CascadiaTrackFillBrush" Color="{StaticResource CascadiaTrackFillColor}" />
+      <SolidColorBrush x:Key="CascadiaSegmentSelectedBrush" Color="{StaticResource CascadiaSegmentSelectedColor}" />
+      <SolidColorBrush x:Key="CascadiaSuccessBrush" Color="{StaticResource CascadiaSuccessColor}" />
+      <SolidColorBrush x:Key="CascadiaWarningBrush" Color="{StaticResource CascadiaWarningColor}" />
+      <SolidColorBrush x:Key="CascadiaErrorBrush" Color="{StaticResource CascadiaErrorColor}" />
+      <SolidColorBrush x:Key="CascadiaDangerFillBrush" Color="{StaticResource CascadiaDangerFillColor}" />
+      <SolidColorBrush x:Key="CascadiaInfoBrush" Color="{StaticResource CascadiaInfoColor}" />
+      <SolidColorBrush x:Key="CascadiaShadowBrush" Color="{StaticResource CascadiaShadowColor}" />
+      <SolidColorBrush x:Key="CascadiaShadowStrongBrush" Color="{StaticResource CascadiaShadowStrongColor}" />
+
+      <!-- Fluent keys, re-pointed at the Cascadia palette -->
+      <SolidColorBrush x:Key="SystemRegionBrush" Color="{StaticResource CascadiaWindowBackgroundColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseMediumHighBrush" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseLowBrush" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="SystemControlDisabledBaseMediumLowBrush" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="SystemControlHighlightListLowBrush" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="SystemControlHighlightListMediumBrush" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="ButtonBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ButtonForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ButtonForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ButtonForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="TextControlBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{StaticResource CascadiaSurfaceColor}" />
+      <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="TextControlForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TextControlForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TextControlForegroundFocused" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TextControlForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="TextControlBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="TextControlBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="TextControlButtonForeground" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundUnfocused" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="ComboBoxForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ComboBoxPlaceHolderForeground" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxDropDownGlyphForeground" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutPresenterBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutPresenterBorderBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForegroundPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForeground" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutSubItemChevron" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="FlyoutPresenterBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="FlyoutBorderThemeBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="ToolTipBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="ToolTipBorderBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="ToolTipForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackground" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackgroundPointerOver" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackgroundPressed" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForegroundPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrush" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrushPointerOver" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrushPressed" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronForeground" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="ExpanderContentBackground" Color="{StaticResource CascadiaSurfaceSecondaryColor}" />
+      <SolidColorBrush x:Key="ExpanderContentBorderBrush" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="TreeViewItemBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="TreeViewItemBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundSelected" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundSelectedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundSelectedPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundStrokeUnchecked" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundStrokeUncheckedPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillUnchecked" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillUncheckedPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillUncheckedPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundUnchecked" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundChecked" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundIndeterminate" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundUncheckedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundCheckedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundIndeterminatePointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchContentForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOff" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOffPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+
+      <!-- Accent used as text (links, hyperlinks) - deepened on light backgrounds -->
+      <SolidColorBrush x:Key="CascadiaAccentTextBrush" Color="{DynamicResource SystemAccentColorDark1}" />
+      <SolidColorBrush x:Key="HyperlinkButtonForeground" Color="{DynamicResource SystemAccentColorDark1}" />
+      <SolidColorBrush x:Key="HyperlinkButtonForegroundPointerOver" Color="{DynamicResource SystemAccentColorDark2}" />
+      <SolidColorBrush x:Key="HyperlinkButtonForegroundPressed" Color="{DynamicResource SystemAccentColorDark3}" />
+    </ResourceDictionary>
+
+    <ResourceDictionary x:Key="Dark">
+      <Color x:Key="CascadiaWindowBackgroundColor">#1F1F1F</Color>
+      <Color x:Key="CascadiaTitleBarBackgroundColor">#161616</Color>
+      <Color x:Key="CascadiaSurfaceColor">#272727</Color>
+      <Color x:Key="CascadiaSurfaceSecondaryColor">#2B2B2B</Color>
+      <Color x:Key="CascadiaCardColor">#2C2C2C</Color>
+      <Color x:Key="CascadiaCardStrokeColor">#383838</Color>
+      <Color x:Key="CascadiaControlFillColor">#323232</Color>
+      <Color x:Key="CascadiaControlFillHoverColor">#3A3A3A</Color>
+      <Color x:Key="CascadiaControlFillPressedColor">#2C2C2C</Color>
+      <Color x:Key="CascadiaControlFillDisabledColor">#2A2A2A</Color>
+      <Color x:Key="CascadiaControlStrokeColor">#424242</Color>
+      <Color x:Key="CascadiaControlStrokeStrongColor">#555555</Color>
+      <Color x:Key="CascadiaDividerColor">#373737</Color>
+      <Color x:Key="CascadiaTextPrimaryColor">#EDEDED</Color>
+      <Color x:Key="CascadiaTextSecondaryColor">#ABABAB</Color>
+      <Color x:Key="CascadiaTextTertiaryColor">#808080</Color>
+      <Color x:Key="CascadiaTextDisabledColor">#5F5F5F</Color>
+      <Color x:Key="CascadiaSubtleHoverColor">#14FFFFFF</Color>
+      <Color x:Key="CascadiaSubtlePressedColor">#0BFFFFFF</Color>
+      <Color x:Key="CascadiaPopupColor">#2C2C2C</Color>
+      <Color x:Key="CascadiaPopupStrokeColor">#3F3F3F</Color>
+      <Color x:Key="CascadiaScrimColor">#99161616</Color>
+      <Color x:Key="CascadiaTrackFillColor">#363636</Color>
+      <Color x:Key="CascadiaSegmentSelectedColor">#454545</Color>
+      <Color x:Key="CascadiaSuccessColor">#3FB950</Color>
+      <Color x:Key="CascadiaWarningColor">#D29922</Color>
+      <Color x:Key="CascadiaErrorColor">#F85149</Color>
+      <Color x:Key="CascadiaDangerFillColor">#C93C37</Color>
+      <Color x:Key="CascadiaInfoColor">#58A6FF</Color>
+      <Color x:Key="CascadiaShadowColor">#59000000</Color>
+      <Color x:Key="CascadiaShadowStrongColor">#80000000</Color>
+
+      <SolidColorBrush x:Key="CascadiaWindowBackgroundBrush" Color="{StaticResource CascadiaWindowBackgroundColor}" />
+      <SolidColorBrush x:Key="CascadiaTitleBarBackgroundBrush" Color="{StaticResource CascadiaTitleBarBackgroundColor}" />
+      <SolidColorBrush x:Key="CascadiaSurfaceBrush" Color="{StaticResource CascadiaSurfaceColor}" />
+      <SolidColorBrush x:Key="CascadiaSurfaceSecondaryBrush" Color="{StaticResource CascadiaSurfaceSecondaryColor}" />
+      <SolidColorBrush x:Key="CascadiaCardBrush" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="CascadiaCardStrokeBrush" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillBrush" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillHoverBrush" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillPressedBrush" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="CascadiaControlFillDisabledBrush" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="CascadiaControlStrokeBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="CascadiaControlStrokeStrongBrush" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="CascadiaDividerBrush" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="CascadiaTextPrimaryBrush" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CascadiaTextSecondaryBrush" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="CascadiaTextTertiaryBrush" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="CascadiaTextDisabledBrush" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="CascadiaSubtleHoverBrush" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="CascadiaSubtlePressedBrush" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="CascadiaPopupBrush" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="CascadiaPopupStrokeBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="CascadiaScrimBrush" Color="{StaticResource CascadiaScrimColor}" />
+      <SolidColorBrush x:Key="CascadiaTrackFillBrush" Color="{StaticResource CascadiaTrackFillColor}" />
+      <SolidColorBrush x:Key="CascadiaSegmentSelectedBrush" Color="{StaticResource CascadiaSegmentSelectedColor}" />
+      <SolidColorBrush x:Key="CascadiaSuccessBrush" Color="{StaticResource CascadiaSuccessColor}" />
+      <SolidColorBrush x:Key="CascadiaWarningBrush" Color="{StaticResource CascadiaWarningColor}" />
+      <SolidColorBrush x:Key="CascadiaErrorBrush" Color="{StaticResource CascadiaErrorColor}" />
+      <SolidColorBrush x:Key="CascadiaDangerFillBrush" Color="{StaticResource CascadiaDangerFillColor}" />
+      <SolidColorBrush x:Key="CascadiaInfoBrush" Color="{StaticResource CascadiaInfoColor}" />
+      <SolidColorBrush x:Key="CascadiaShadowBrush" Color="{StaticResource CascadiaShadowColor}" />
+      <SolidColorBrush x:Key="CascadiaShadowStrongBrush" Color="{StaticResource CascadiaShadowStrongColor}" />
+
+      <!-- Fluent keys, re-pointed at the Cascadia palette -->
+      <SolidColorBrush x:Key="SystemRegionBrush" Color="{StaticResource CascadiaWindowBackgroundColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseHighBrush" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseMediumBrush" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseMediumHighBrush" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="SystemControlForegroundBaseLowBrush" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="SystemControlDisabledBaseMediumLowBrush" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="SystemControlHighlightListLowBrush" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="SystemControlHighlightListMediumBrush" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="ButtonBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ButtonBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="ButtonBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="ButtonBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ButtonForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ButtonForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ButtonForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ButtonForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ButtonBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="RepeatButtonForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="RepeatButtonBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ToggleButtonForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ToggleButtonBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="TextControlBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="TextControlBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="TextControlBackgroundFocused" Color="{StaticResource CascadiaSurfaceColor}" />
+      <SolidColorBrush x:Key="TextControlBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="TextControlForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TextControlForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TextControlForegroundFocused" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TextControlForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="TextControlBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="TextControlBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="TextControlBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForeground" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForegroundPointerOver" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForegroundFocused" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="TextControlPlaceholderForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="TextControlButtonForeground" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackground" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ComboBoxBackgroundUnfocused" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrush" Color="{StaticResource CascadiaControlStrokeColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushPressed" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ComboBoxBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="ComboBoxForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ComboBoxPlaceHolderForeground" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxDropDownGlyphForeground" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxDropDownBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="ComboBoxDropDownBorderBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelected" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ComboBoxItemForegroundSelectedPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutPresenterBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutPresenterBorderBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForegroundPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForeground" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutItemKeyboardAcceleratorTextForegroundPointerOver" Color="{StaticResource CascadiaTextTertiaryColor}" />
+      <SolidColorBrush x:Key="MenuFlyoutSubItemChevron" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="FlyoutPresenterBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="FlyoutBorderThemeBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="ToolTipBackground" Color="{StaticResource CascadiaPopupColor}" />
+      <SolidColorBrush x:Key="ToolTipBorderBrush" Color="{StaticResource CascadiaPopupStrokeColor}" />
+      <SolidColorBrush x:Key="ToolTipForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackground" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackgroundPointerOver" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackgroundPressed" Color="{StaticResource CascadiaCardColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBackgroundDisabled" Color="{StaticResource CascadiaControlFillDisabledColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForegroundPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderForegroundDisabled" Color="{StaticResource CascadiaTextDisabledColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrush" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrushPointerOver" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrushPressed" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="ExpanderHeaderBorderBrushDisabled" Color="{StaticResource CascadiaDividerColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronForeground" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronForegroundPressed" Color="{StaticResource CascadiaTextSecondaryColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="ExpanderChevronBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="ExpanderContentBackground" Color="{StaticResource CascadiaSurfaceSecondaryColor}" />
+      <SolidColorBrush x:Key="ExpanderContentBorderBrush" Color="{StaticResource CascadiaCardStrokeColor}" />
+      <SolidColorBrush x:Key="TreeViewItemBackgroundPointerOver" Color="{StaticResource CascadiaSubtleHoverColor}" />
+      <SolidColorBrush x:Key="TreeViewItemBackgroundPressed" Color="{StaticResource CascadiaSubtlePressedColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundSelected" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundSelectedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="TreeViewItemForegroundSelectedPressed" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundStrokeUnchecked" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundStrokeUncheckedPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillUnchecked" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillUncheckedPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+      <SolidColorBrush x:Key="CheckBoxCheckBackgroundFillUncheckedPressed" Color="{StaticResource CascadiaControlFillPressedColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundUnchecked" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundChecked" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundIndeterminate" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundUncheckedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundCheckedPointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="CheckBoxForegroundIndeterminatePointerOver" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchContentForeground" Color="{StaticResource CascadiaTextPrimaryColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOff" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchStrokeOffPointerOver" Color="{StaticResource CascadiaControlStrokeStrongColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOff" Color="{StaticResource CascadiaControlFillColor}" />
+      <SolidColorBrush x:Key="ToggleSwitchFillOffPointerOver" Color="{StaticResource CascadiaControlFillHoverColor}" />
+
+      <!-- Accent used as text (links, hyperlinks) - lifted on dark backgrounds -->
+      <SolidColorBrush x:Key="CascadiaAccentTextBrush" Color="{DynamicResource SystemAccentColorLight2}" />
+      <SolidColorBrush x:Key="HyperlinkButtonForeground" Color="{DynamicResource SystemAccentColorLight2}" />
+      <SolidColorBrush x:Key="HyperlinkButtonForegroundPointerOver" Color="{DynamicResource SystemAccentColorLight3}" />
+      <SolidColorBrush x:Key="HyperlinkButtonForegroundPressed" Color="{DynamicResource SystemAccentColorLight1}" />
+    </ResourceDictionary>
+  </ResourceDictionary.ThemeDictionaries>
+</ResourceDictionary>

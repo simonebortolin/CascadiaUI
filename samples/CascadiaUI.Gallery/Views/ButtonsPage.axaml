@@ -1,0 +1,101 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CascadiaUI.Gallery.Views.ButtonsPage">
+  <ScrollViewer>
+    <StackPanel Margin="28,24" Spacing="20" MaxWidth="900" HorizontalAlignment="Left">
+      <StackPanel Spacing="4">
+        <TextBlock Classes="h1" Text="Buttons &amp; inputs" />
+        <TextBlock Classes="secondary" Text="Every input control SharpMediaInfo and Label Studio 200B use, in the Cascadia skin." />
+      </StackPanel>
+
+      <Border Classes="card">
+        <StackPanel Spacing="14">
+          <TextBlock Classes="h3" Text="Buttons" />
+          <WrapPanel ItemSpacing="8" LineSpacing="8">
+            <Button Content="Default" />
+            <Button Classes="accent" Content="Accent" />
+            <Button Classes="subtle" Content="Subtle" />
+            <Button Classes="danger" Content="Delete" />
+            <Button Content="Disabled" IsEnabled="False" />
+            <ToggleButton Content="Toggle" IsChecked="True" />
+            <ToggleButton Classes="subtle icon" Content="🤓" ToolTip.Tip="Stats for nerds" />
+            <RepeatButton Content="Repeat" />
+            <DropDownButton Content="Drop-down">
+              <DropDownButton.Flyout>
+                <MenuFlyout>
+                  <MenuItem Header="Save standard report" InputGesture="Ctrl+S" />
+                  <MenuItem Header="Save complete report" InputGesture="Ctrl+Shift+S" />
+                  <Separator />
+                  <MenuItem Header="Save cover" />
+                </MenuFlyout>
+              </DropDownButton.Flyout>
+            </DropDownButton>
+            <HyperlinkButton Content="Hyperlink" NavigateUri="https://github.com/simonebortolin/CascadiaUI" />
+          </WrapPanel>
+        </StackPanel>
+      </Border>
+
+      <Border Classes="card">
+        <Grid ColumnDefinitions="*,24,*" RowDefinitions="Auto,Auto,Auto,Auto,Auto">
+          <TextBlock Grid.ColumnSpan="3" Classes="h3" Text="Text &amp; numbers" Margin="0,0,0,12" />
+
+          <StackPanel Grid.Row="1" Grid.Column="0" Spacing="6" Margin="0,0,0,12">
+            <TextBlock Classes="caption" Text="Label text" />
+            <TextBox Text="Hello, Cascadia" />
+          </StackPanel>
+          <StackPanel Grid.Row="1" Grid.Column="2" Spacing="6" Margin="0,0,0,12">
+            <TextBlock Classes="caption" Text="Placeholder" />
+            <TextBox PlaceholderText="Search media files…" />
+          </StackPanel>
+
+          <StackPanel Grid.Row="2" Grid.Column="0" Spacing="6" Margin="0,0,0,12">
+            <TextBlock Classes="caption" Text="Copies (NumericUpDown)" />
+            <NumericUpDown Value="2" Minimum="1" Maximum="99" Increment="1" FormatString="0" />
+          </StackPanel>
+          <StackPanel Grid.Row="2" Grid.Column="2" Spacing="6" Margin="0,0,0,12">
+            <TextBlock Classes="caption" Text="Font (ComboBox)" />
+            <ComboBox SelectedIndex="0" HorizontalAlignment="Stretch">
+              <ComboBoxItem Content="Inter" />
+              <ComboBoxItem Content="Cascadia Mono" />
+              <ComboBoxItem Content="DejaVu Sans" />
+            </ComboBox>
+          </StackPanel>
+
+          <StackPanel Grid.Row="3" Grid.Column="0" Spacing="6" Margin="0,0,0,12">
+            <TextBlock Classes="caption" Text="Monospace" />
+            <TextBox Classes="mono" Text="General / Format : Matroska" />
+          </StackPanel>
+          <StackPanel Grid.Row="3" Grid.Column="2" Spacing="6" Margin="0,0,0,12">
+            <TextBlock Classes="caption" Text="Disabled" />
+            <TextBox Text="Read only" IsEnabled="False" />
+          </StackPanel>
+
+          <StackPanel Grid.Row="4" Grid.ColumnSpan="3" Spacing="6">
+            <TextBlock Classes="caption" Text="Multi-line" />
+            <TextBox AcceptsReturn="True" TextWrapping="Wrap" Height="76"
+                     Text="Line one of a label&#10;Line two, a bit longer than the first" />
+          </StackPanel>
+        </Grid>
+      </Border>
+
+      <Border Classes="card">
+        <StackPanel Spacing="12">
+          <TextBlock Classes="h3" Text="Choices" />
+          <WrapPanel ItemSpacing="24" LineSpacing="8">
+            <CheckBox Content="Auto-cut" IsChecked="True" />
+            <CheckBox Content="Mirror" />
+            <CheckBox Content="Indeterminate" IsThreeState="True" IsChecked="{x:Null}" />
+            <CheckBox Content="Disabled" IsEnabled="False" IsChecked="True" />
+          </WrapPanel>
+          <WrapPanel ItemSpacing="24" LineSpacing="8">
+            <RadioButton GroupName="size" Content="9 mm" />
+            <RadioButton GroupName="size" Content="12 mm" IsChecked="True" />
+            <RadioButton GroupName="size" Content="18 mm" />
+            <ToggleSwitch Content="Dark preview" />
+          </WrapPanel>
+          <Slider Minimum="0" Maximum="100" Value="64" MaxWidth="420" HorizontalAlignment="Left" Width="420" />
+        </StackPanel>
+      </Border>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

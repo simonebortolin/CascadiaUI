@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>$(DotNetTfm)</TargetFramework>
+    <RootNamespace>CascadiaUI</RootNamespace>
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
+
+    <PackageId>CascadiaUI</PackageId>
+    <Title>Avalonia Cascadia Theme</Title>
+    <Description>A Fluent × macOS theme for Avalonia 12: neutral light/dark palettes, a customisable accent, Windows Terminal / SourceGit-style tabs that live in the title bar, plus BusyArea, ProgressRing and toast notifications.</Description>
+    <PackageTags>avalonia;theme;fluent;macos;tabs;ui;cascadia</PackageTags>
+    <PackageReadmeFile>README.md</PackageReadmeFile>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Avalonia" />
+    <PackageReference Include="Avalonia.Themes.Fluent" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="..\..\README.md" Pack="true" PackagePath="\" Visible="false" />
+  </ItemGroup>
+</Project>

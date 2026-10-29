@@ -1,0 +1,88 @@
+<cascadia:CascadiaWindow xmlns="https://github.com/avaloniaui"
+                         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                         xmlns:cascadia="https://github.com/simonebortolin/CascadiaUI"
+                         xmlns:vm="using:CascadiaUI.Gallery.ViewModels"
+                         xmlns:views="using:CascadiaUI.Gallery.Views"
+                         x:Class="CascadiaUI.Gallery.Views.MainWindow"
+                         x:DataType="vm:MainViewModel"
+                         Title="Cascadia Gallery"
+                         Width="1100" Height="740"
+                         MinWidth="560" MinHeight="420"
+                         ExtendContentIntoTitleBar="True">
+  <Panel>
+    <DockPanel>
+      <Border DockPanel.Dock="Bottom" Classes="statusbar">
+        <Grid ColumnDefinitions="*,Auto">
+          <TextBlock Text="{Binding Status}" />
+          <TextBlock Grid.Column="1" Text="Avalonia Cascadia Theme" />
+        </Grid>
+      </Border>
+
+      <cascadia:CascadiaTabControl Name="Tabs"
+                                   IsInTitleBar="True"
+                                   CanCloseTabs="True"
+                                   ShowAddButton="True"
+                                   ItemsSource="{Binding Pages}"
+                                   SelectedItem="{Binding SelectedPage}"
+                                   AddTabCommand="{Binding AddPageCommand}"
+                                   CloseTabCommand="{Binding ClosePageCommand}">
+        <cascadia:CascadiaTabControl.StripHeader>
+          <Menu Margin="0,0,6,0">
+            <MenuItem Header="_File">
+              <MenuItem Header="_New tab" Command="{Binding AddPageCommand}" InputGesture="Ctrl+T" />
+              <Separator />
+              <MenuItem Header="E_xit" Click="Exit_Click" />
+            </MenuItem>
+            <MenuItem Header="_View">
+              <MenuItem Header="_Theme">
+                <MenuItem Header="_System" Command="{Binding SetThemeCommand}" CommandParameter="Default" />
+                <MenuItem Header="_Light" Command="{Binding SetThemeCommand}" CommandParameter="Light" />
+                <MenuItem Header="_Dark" Command="{Binding SetThemeCommand}" CommandParameter="Dark" />
+              </MenuItem>
+              <MenuItem Header="_Accent" ItemsSource="{Binding Accents}">
+                <MenuItem.ItemContainerTheme>
+                  <ControlTheme TargetType="MenuItem" BasedOn="{StaticResource {x:Type MenuItem}}" x:DataType="vm:AccentChoice">
+                    <Setter Property="Header" Value="{Binding Name}" />
+                    <Setter Property="Command" Value="{Binding $parent[Window].((vm:MainViewModel)DataContext).SetAccentCommand}" />
+                    <Setter Property="CommandParameter" Value="{Binding}" />
+                    <Setter Property="Icon">
+                      <Template>
+                        <Ellipse Width="12" Height="12" Fill="{Binding Brush}" />
+                      </Template>
+                    </Setter>
+                  </ControlTheme>
+                </MenuItem.ItemContainerTheme>
+              </MenuItem>
+              <MenuItem Header="_Density">
+                <MenuItem Header="_Comfortable" Command="{Binding SetDensityCommand}" CommandParameter="Comfortable" />
+                <MenuItem Header="C_ompact" Command="{Binding SetDensityCommand}" CommandParameter="Compact" />
+              </MenuItem>
+            </MenuItem>
+          </Menu>
+        </cascadia:CascadiaTabControl.StripHeader>
+
+        <cascadia:CascadiaTabControl.ItemTemplate>
+          <DataTemplate x:DataType="vm:PageViewModel">
+            <TextBlock Text="{Binding Header}" />
+          </DataTemplate>
+        </cascadia:CascadiaTabControl.ItemTemplate>
+
+        <cascadia:CascadiaTabControl.DataTemplates>
+          <DataTemplate DataType="vm:ButtonsPageViewModel"><views:ButtonsPage /></DataTemplate>
+          <DataTemplate DataType="vm:ListsPageViewModel"><views:ListsPage /></DataTemplate>
+          <DataTemplate DataType="vm:TabsPageViewModel"><views:TabsPage /></DataTemplate>
+          <DataTemplate DataType="vm:FeedbackPageViewModel"><views:FeedbackPage /></DataTemplate>
+          <DataTemplate DataType="vm:TypographyPageViewModel"><views:TypographyPage /></DataTemplate>
+          <DataTemplate DataType="vm:ScratchPageViewModel">
+            <StackPanel Margin="28" Spacing="8">
+              <TextBlock Classes="h2" Text="{Binding Header}" />
+              <TextBlock Classes="secondary" Text="{Binding Body}" TextWrapping="Wrap" />
+            </StackPanel>
+          </DataTemplate>
+        </cascadia:CascadiaTabControl.DataTemplates>
+      </cascadia:CascadiaTabControl>
+    </DockPanel>
+
+    <cascadia:ToastHost Manager="{Binding Toasts}" Margin="0,0,0,28" />
+  </Panel>
+</cascadia:CascadiaWindow>

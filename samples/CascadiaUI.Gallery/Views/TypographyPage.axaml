@@ -1,0 +1,65 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             x:Class="CascadiaUI.Gallery.Views.TypographyPage">
+  <UserControl.Styles>
+    <Style Selector="Border.swatch">
+      <Setter Property="Width" Value="128" />
+      <Setter Property="Height" Value="56" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="BorderThickness" Value="1" />
+      <Setter Property="BorderBrush" Value="{DynamicResource CascadiaCardStrokeBrush}" />
+      <Setter Property="Padding" Value="8,6" />
+    </Style>
+    <Style Selector="Border.swatch TextBlock">
+      <Setter Property="FontSize" Value="11" />
+      <Setter Property="VerticalAlignment" Value="Bottom" />
+    </Style>
+  </UserControl.Styles>
+  <ScrollViewer>
+    <StackPanel Margin="28,24" Spacing="20">
+      <StackPanel Spacing="6">
+        <TextBlock Classes="h1" Text="Heading one" />
+        <TextBlock Classes="h2" Text="Heading two" />
+        <TextBlock Classes="h3" Text="Heading three" />
+        <TextBlock Text="Body text — the quick brown fox jumps over the lazy dog." />
+        <TextBlock Classes="secondary" Text="Secondary text for descriptions and hints." />
+        <TextBlock Classes="caption" Text="Caption text, 12px." />
+        <TextBlock Classes="mono" Text="Monospace: Cascadia Mono → Consolas → SF Mono → DejaVu Sans Mono" />
+        <TextBlock Classes="link" Text="A link-styled TextBlock" />
+      </StackPanel>
+
+      <Separator />
+
+      <StackPanel Spacing="8">
+        <TextBlock Classes="h3" Text="Palette" />
+        <WrapPanel ItemSpacing="8" LineSpacing="8">
+          <Border Classes="swatch" Background="{DynamicResource CascadiaAccentBrush}"><TextBlock Text="Accent" Foreground="{DynamicResource CascadiaAccentForegroundBrush}" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaAccentSubtleBrush}"><TextBlock Text="Accent subtle" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaWindowBackgroundBrush}"><TextBlock Text="Window" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaTitleBarBackgroundBrush}"><TextBlock Text="Title bar" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaSurfaceBrush}"><TextBlock Text="Surface" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaCardBrush}"><TextBlock Text="Card" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaSuccessBrush}"><TextBlock Text="Success" Foreground="White" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaWarningBrush}"><TextBlock Text="Warning" Foreground="White" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaErrorBrush}"><TextBlock Text="Error" Foreground="White" /></Border>
+          <Border Classes="swatch" Background="{DynamicResource CascadiaInfoBrush}"><TextBlock Text="Info" Foreground="White" /></Border>
+        </WrapPanel>
+      </StackPanel>
+
+      <Grid ColumnDefinitions="*,20,*">
+        <Border Classes="card">
+          <StackPanel Spacing="8">
+            <TextBlock Classes="h3" Text="Card" />
+            <TextBlock Classes="secondary" TextWrapping="Wrap" Text="Border Classes=&quot;card&quot; - the basic grouping surface: 10px radius, hairline stroke, no shadow." />
+          </StackPanel>
+        </Border>
+        <Border Grid.Column="2" Classes="card">
+          <StackPanel Spacing="8">
+            <TextBlock Classes="h3" Text="Image" />
+            <Image Source="/Assets/cascadia.png" Height="64" HorizontalAlignment="Left" />
+          </StackPanel>
+        </Border>
+      </Grid>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

@@ -1,0 +1,75 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:vm="using:CascadiaUI.Gallery.ViewModels"
+             x:Class="CascadiaUI.Gallery.Views.ListsPage"
+             x:DataType="vm:ListsPageViewModel">
+  <ScrollViewer>
+    <StackPanel Margin="28,24" Spacing="20">
+      <StackPanel Spacing="4">
+        <TextBlock Classes="h1" Text="Lists &amp; trees" />
+        <TextBlock Classes="secondary" Text="Device list, MediaInfo-style report tree, and wrap-panel chips. Right-click for a context menu." />
+      </StackPanel>
+
+      <Grid ColumnDefinitions="*,20,*">
+        <StackPanel Spacing="8">
+          <TextBlock Classes="h3" Text="Devices (ListBox)" />
+          <ListBox ItemsSource="{Binding Devices}" SelectedIndex="0" Height="200">
+            <ListBox.ContextMenu>
+              <ContextMenu>
+                <MenuItem Header="Connect" />
+                <MenuItem Header="Rename…" />
+                <Separator />
+                <MenuItem Header="Forget device" />
+              </ContextMenu>
+            </ListBox.ContextMenu>
+          </ListBox>
+        </StackPanel>
+
+        <StackPanel Grid.Column="2" Spacing="8">
+          <TextBlock Classes="h3" Text="Report (TreeView)" />
+          <Border Classes="card" Padding="4" Height="200">
+            <TreeView ItemsSource="{Binding Report}">
+              <TreeView.ItemTemplate>
+                <TreeDataTemplate ItemsSource="{Binding Children}" x:DataType="vm:ReportNode">
+                  <StackPanel Orientation="Horizontal" Spacing="12">
+                    <TextBlock Text="{Binding Name}" FontWeight="SemiBold" />
+                    <TextBlock Text="{Binding Value}" Classes="secondary mono" />
+                  </StackPanel>
+                </TreeDataTemplate>
+              </TreeView.ItemTemplate>
+            </TreeView>
+          </Border>
+        </StackPanel>
+      </Grid>
+
+      <StackPanel Spacing="8">
+        <TextBlock Classes="h3" Text="Chips (ItemsControl + WrapPanel)" />
+        <ItemsControl ItemsSource="{Binding Chips}">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <WrapPanel ItemSpacing="6" LineSpacing="6" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="x:String">
+              <ToggleButton Content="{Binding}" CornerRadius="14" Padding="12,4" />
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </StackPanel>
+
+      <StackPanel Spacing="8">
+        <TextBlock Classes="h3" Text="Expanders" />
+        <Expander Header="Advanced print settings" HorizontalAlignment="Stretch" IsExpanded="True">
+          <StackPanel Spacing="8">
+            <CheckBox Content="High density" IsChecked="True" />
+            <CheckBox Content="Print margin marks" />
+          </StackPanel>
+        </Expander>
+        <Expander Header="Stream details" HorizontalAlignment="Stretch">
+          <TextBlock Classes="mono" Text="Stream #0:0 Video: h264 (High), yuv420p, 1920x1080" />
+        </Expander>
+      </StackPanel>
+    </StackPanel>
+  </ScrollViewer>
+</UserControl>

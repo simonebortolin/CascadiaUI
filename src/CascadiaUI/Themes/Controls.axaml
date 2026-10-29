@@ -1,0 +1,521 @@
+<ResourceDictionary xmlns="https://github.com/avaloniaui"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:controls="using:CascadiaUI.Controls"
+                    xmlns:toasts="using:CascadiaUI.Toasts">
+
+  <!-- ===================================================================================
+       Tabs
+       One template serves both TabControl and CascadiaTabControl (whose extra properties are
+       reached through $parent bindings, so a plain TabControl simply has no header/footer/+).
+       Default look: Windows Terminal - a darker strip, the active tab lifts into the content.
+       Classes="pills": macOS segmented control - a rounded track, the active tab a raised pill.
+       =================================================================================== -->
+
+  <ControlTheme x:Key="CascadiaTabStripButton" TargetType="Button">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextSecondaryBrush}" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="Width" Value="28" />
+    <Setter Property="Height" Value="28" />
+    <Setter Property="CornerRadius" Value="6" />
+    <Setter Property="VerticalAlignment" Value="Center" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="controls:CascadiaWindow.IsTitleBarInteractive" Value="True" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          CornerRadius="{TemplateBinding CornerRadius}"
+                          Padding="{TemplateBinding Padding}"
+                          Content="{TemplateBinding Content}"
+                          HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                          VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource CascadiaSubtleHoverBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource CascadiaTextPrimaryBrush}" />
+    </Style>
+    <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource CascadiaSubtlePressedBrush}" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="CascadiaTabCloseButton" TargetType="Button" BasedOn="{StaticResource CascadiaTabStripButton}">
+    <Setter Property="Width" Value="20" />
+    <Setter Property="Height" Value="20" />
+    <Setter Property="CornerRadius" Value="4" />
+    <Setter Property="Content">
+      <Template>
+        <Path Data="M0,0 L8,8 M8,0 L0,8"
+              Stroke="{Binding $parent[Button].Foreground}"
+              StrokeThickness="1.3"
+              StrokeLineCap="Round"
+              Width="8" Height="8" />
+      </Template>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type TabControl}" TargetType="TabControl">
+    <Setter Property="Background" Value="{DynamicResource CascadiaSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaCardStrokeBrush}" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="ItemsPanel">
+      <ItemsPanelTemplate>
+        <StackPanel Orientation="Horizontal" Spacing="2" />
+      </ItemsPanelTemplate>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_Root"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                ClipToBounds="True"
+                HorizontalAlignment="{TemplateBinding HorizontalAlignment}"
+                VerticalAlignment="{TemplateBinding VerticalAlignment}">
+          <DockPanel>
+            <Border Name="PART_Strip"
+                    DockPanel.Dock="Top"
+                    Background="{DynamicResource CascadiaTitleBarBackgroundBrush}"
+                    Padding="6,6,6,0">
+              <Grid Name="PART_StripGrid"
+                    ColumnDefinitions="Auto,*,Auto"
+                    Margin="{TemplateBinding (controls:CascadiaTabControl.StripInsets)}">
+                <ContentPresenter Name="PART_StripHeader"
+                                  Grid.Column="0"
+                                  VerticalAlignment="Center"
+                                  Content="{TemplateBinding (controls:CascadiaTabControl.StripHeader)}"
+                                  IsVisible="{Binding $self.Content, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                  controls:CascadiaWindow.IsTitleBarInteractive="True" />
+                <ScrollViewer Name="PART_StripScroller"
+                              Grid.Column="1"
+                              HorizontalAlignment="Left"
+                              HorizontalScrollBarVisibility="Hidden"
+                              VerticalScrollBarVisibility="Disabled">
+                  <StackPanel Orientation="Horizontal" VerticalAlignment="Bottom">
+                    <Border Name="PART_ItemsTrack">
+                      <ItemsPresenter Name="PART_ItemsPresenter"
+                                      ItemsPanel="{TemplateBinding ItemsPanel}" />
+                    </Border>
+                    <Button Name="PART_AddButton"
+                            Theme="{StaticResource CascadiaTabStripButton}"
+                            Margin="4,0,0,3"
+                            VerticalAlignment="Bottom"
+                            ToolTip.Tip="New tab"
+                            IsVisible="{TemplateBinding (controls:CascadiaTabControl.ShowAddButton)}">
+                      <Path Data="M5,0 L5,10 M0,5 L10,5"
+                            Stroke="{Binding $parent[Button].Foreground}"
+                            StrokeThickness="1.3"
+                            StrokeLineCap="Round"
+                            Width="10" Height="10" />
+                    </Button>
+                  </StackPanel>
+                </ScrollViewer>
+                <ContentPresenter Name="PART_StripFooter"
+                                  Grid.Column="2"
+                                  VerticalAlignment="Center"
+                                  Content="{TemplateBinding (controls:CascadiaTabControl.StripFooter)}"
+                                  IsVisible="{Binding $self.Content, Converter={x:Static ObjectConverters.IsNotNull}}"
+                                  controls:CascadiaWindow.IsTitleBarInteractive="True" />
+              </Grid>
+            </Border>
+            <Border Name="PART_ContentRoot">
+              <Panel ClipToBounds="True">
+                <ContentPresenter Name="PART_SelectedContentHost2"
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}"
+                                  IsVisible="False" />
+                <ContentPresenter Name="PART_SelectedContentHost"
+                                  Margin="{TemplateBinding Padding}"
+                                  HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                  VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+              </Panel>
+            </Border>
+          </DockPanel>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <!-- Tabs in the window title bar: full title-bar height, and the strip drags the window. -->
+    <Style Selector="^:titlebar /template/ Border#PART_Strip">
+      <Setter Property="MinHeight" Value="{DynamicResource CascadiaTitleBarHeight}" />
+      <Setter Property="Padding" Value="8,0,8,0" />
+      <Setter Property="controls:CascadiaWindow.IsTitleBarDragArea" Value="True" />
+    </Style>
+
+    <!-- macOS segmented look -->
+    <Style Selector="^.pills">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="ItemsPanel">
+        <ItemsPanelTemplate>
+          <StackPanel Orientation="Horizontal" Spacing="2" />
+        </ItemsPanelTemplate>
+      </Setter>
+    </Style>
+    <Style Selector="^.pills /template/ Border#PART_Strip">
+      <Setter Property="Background" Value="Transparent" />
+      <Setter Property="Padding" Value="0,0,0,10" />
+    </Style>
+    <Style Selector="^.pills /template/ Border#PART_ItemsTrack">
+      <Setter Property="Background" Value="{DynamicResource CascadiaTrackFillBrush}" />
+      <Setter Property="CornerRadius" Value="8" />
+      <Setter Property="Padding" Value="3" />
+    </Style>
+    <Style Selector="^.pills /template/ Button#PART_AddButton">
+      <Setter Property="Margin" Value="4,0,0,3" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type TabItem}" TargetType="TabItem">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextSecondaryBrush}" />
+    <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+    <Setter Property="Padding" Value="14,0" />
+    <Setter Property="Margin" Value="0" />
+    <Setter Property="MinWidth" Value="64" />
+    <Setter Property="MaxWidth" Value="260" />
+    <Setter Property="Height" Value="{DynamicResource CascadiaTabItemHeight}" />
+    <Setter Property="CornerRadius" Value="{DynamicResource CascadiaTabCornerRadius}" />
+    <Setter Property="VerticalAlignment" Value="Bottom" />
+    <Setter Property="HorizontalContentAlignment" Value="Left" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+    <Setter Property="controls:CascadiaWindow.IsTitleBarInteractive" Value="True" />
+    <Setter Property="Transitions">
+      <Transitions>
+        <BrushTransition Property="Background" Duration="0:0:0.12" />
+      </Transitions>
+    </Setter>
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Border Name="PART_LayoutRoot"
+                Background="{TemplateBinding Background}"
+                BorderBrush="{TemplateBinding BorderBrush}"
+                BorderThickness="{TemplateBinding BorderThickness}"
+                CornerRadius="{TemplateBinding CornerRadius}"
+                BoxShadow="{TemplateBinding (controls:TabItemAssist.Shadow)}"
+                Padding="{TemplateBinding Padding}">
+          <Grid ColumnDefinitions="*,Auto">
+            <ContentPresenter Name="PART_ContentPresenter"
+                              Grid.Column="0"
+                              HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                              VerticalAlignment="{TemplateBinding VerticalContentAlignment}"
+                              Content="{TemplateBinding Header}"
+                              ContentTemplate="{TemplateBinding HeaderTemplate}"
+                              RecognizesAccessKey="True"
+                              TextTrimming="CharacterEllipsis" />
+            <Button Name="PART_CloseButton"
+                    Grid.Column="1"
+                    Theme="{StaticResource CascadiaTabCloseButton}"
+                    Margin="8,0,-6,0"
+                    ToolTip.Tip="Close"
+                    IsVisible="{TemplateBinding (controls:CascadiaTabControl.IsClosable)}" />
+          </Grid>
+        </Border>
+      </ControlTemplate>
+    </Setter>
+
+    <Style Selector="^:pointerover">
+      <Setter Property="Background" Value="{DynamicResource CascadiaSubtleHoverBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource CascadiaTextPrimaryBrush}" />
+    </Style>
+    <Style Selector="^:selected">
+      <Setter Property="Background" Value="{DynamicResource CascadiaSurfaceBrush}" />
+      <Setter Property="Foreground" Value="{DynamicResource CascadiaTextPrimaryBrush}" />
+    </Style>
+    <Style Selector="^:disabled">
+      <Setter Property="Foreground" Value="{DynamicResource CascadiaTextDisabledBrush}" />
+    </Style>
+    <Style Selector="^:not(:selected):not(:pointerover) /template/ Button#PART_CloseButton">
+      <Setter Property="Opacity" Value="0.55" />
+    </Style>
+    <Style Selector="^.dragging">
+      <Setter Property="Opacity" Value="0.85" />
+      <Setter Property="ZIndex" Value="1" />
+    </Style>
+
+  </ControlTheme>
+
+  <!-- ===================================================================================
+       Window
+       =================================================================================== -->
+
+  <ControlTheme x:Key="{x:Type controls:CascadiaWindow}" TargetType="controls:CascadiaWindow">
+    <Setter Property="Background" Value="{DynamicResource CascadiaWindowBackgroundBrush}" />
+    <Setter Property="TransparencyBackgroundFallback" Value="{DynamicResource CascadiaWindowBackgroundBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextPrimaryBrush}" />
+    <Setter Property="FontSize" Value="{DynamicResource ControlContentThemeFontSize}" />
+    <Setter Property="FontFamily" Value="{DynamicResource ContentControlThemeFontFamily}" />
+    <Setter Property="TitleBarHeight" Value="{DynamicResource CascadiaTitleBarHeight}" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Border Name="PART_TransparencyFallback" IsHitTestVisible="False" />
+          <Border Background="{TemplateBinding Background}" IsHitTestVisible="False" />
+          <VisualLayerManager Name="PART_VisualLayerManager">
+            <DockPanel>
+              <Border Name="PART_TitleBar"
+                      DockPanel.Dock="Top"
+                      Height="{TemplateBinding TitleBarHeight}"
+                      Background="{DynamicResource CascadiaTitleBarBackgroundBrush}"
+                      controls:CascadiaWindow.IsTitleBarDragArea="True"
+                      IsVisible="{Binding !ExtendContentIntoTitleBar, RelativeSource={RelativeSource TemplatedParent}}">
+                <Grid ColumnDefinitions="Auto,*" Margin="{TemplateBinding (controls:CascadiaWindow.CaptionInsets)}">
+                  <TextBlock Name="PART_Title"
+                             Grid.Column="0"
+                             Margin="14,0,12,0"
+                             VerticalAlignment="Center"
+                             FontSize="13"
+                             FontWeight="SemiBold"
+                             Foreground="{DynamicResource CascadiaTextSecondaryBrush}"
+                             Text="{TemplateBinding Title}"
+                             IsVisible="{TemplateBinding ShowTitle}" />
+                  <ContentPresenter Name="PART_TitleBarContent"
+                                    Grid.Column="1"
+                                    HorizontalAlignment="Left"
+                                    VerticalAlignment="Center"
+                                    Content="{TemplateBinding TitleBarContent}"
+                                    controls:CascadiaWindow.IsTitleBarInteractive="True" />
+                </Grid>
+              </Border>
+              <ContentPresenter Name="PART_ContentPresenter"
+                                ContentTemplate="{TemplateBinding ContentTemplate}"
+                                Content="{TemplateBinding Content}"
+                                Margin="{TemplateBinding Padding}"
+                                HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+            </DockPanel>
+          </VisualLayerManager>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <!-- App-drawn caption buttons (Linux, and anywhere else the platform asks for drawn
+       decorations): flat, Terminal-like, sized to the Cascadia title bar, no duplicate title
+       text (the window draws its own). -->
+  <ControlTheme x:Key="CascadiaCaptionButton" TargetType="Button">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextPrimaryBrush}" />
+    <Setter Property="Width" Value="46" />
+    <Setter Property="VerticalAlignment" Value="Stretch" />
+    <Setter Property="(WindowDecorationProperties.ElementRole)" Value="DecorationsElement" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ContentPresenter Name="PART_ContentPresenter"
+                          Background="{TemplateBinding Background}"
+                          Content="{TemplateBinding Content}"
+                          HorizontalContentAlignment="Center"
+                          VerticalContentAlignment="Center" />
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource CascadiaSubtleHoverBrush}" />
+    </Style>
+    <Style Selector="^:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="{DynamicResource CascadiaSubtlePressedBrush}" />
+    </Style>
+    <Style Selector="^.close:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#E81123" />
+      <Setter Property="Foreground" Value="White" />
+    </Style>
+    <Style Selector="^.close:pressed /template/ ContentPresenter#PART_ContentPresenter">
+      <Setter Property="Background" Value="#F1707A" />
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type WindowDrawnDecorations}" TargetType="WindowDrawnDecorations">
+    <Setter Property="DefaultTitleBarHeight" Value="{DynamicResource CascadiaTitleBarHeight}" />
+    <Setter Property="DefaultFrameThickness" Value="1" />
+    <Setter Property="DefaultShadowThickness" Value="12" />
+    <Setter Property="Template">
+      <WindowDrawnDecorationsTemplate>
+        <WindowDrawnDecorationsContent>
+          <WindowDrawnDecorationsContent.Underlay>
+            <Panel>
+              <Border Background="Transparent"
+                      BorderThickness="{TemplateBinding FrameThickness}"
+                      BorderBrush="{DynamicResource CascadiaControlStrokeBrush}"
+                      IsHitTestVisible="False" />
+              <Panel VerticalAlignment="Top"
+                     Height="{TemplateBinding TitleBarHeight}"
+                     Background="{DynamicResource CascadiaTitleBarBackgroundBrush}"
+                     IsVisible="{TemplateBinding HasTitleBar}"
+                     WindowDecorationProperties.ElementRole="TitleBar" />
+            </Panel>
+          </WindowDrawnDecorationsContent.Underlay>
+          <WindowDrawnDecorationsContent.Overlay>
+            <StackPanel VerticalAlignment="Top"
+                        HorizontalAlignment="Right"
+                        Height="{TemplateBinding TitleBarHeight}"
+                        IsVisible="{TemplateBinding HasTitleBar}"
+                        Orientation="Horizontal">
+              <Button x:Name="PART_MinimizeButton"
+                      Theme="{StaticResource CascadiaCaptionButton}"
+                      WindowDecorationProperties.ElementRole="MinimizeButton">
+                <Path Data="M0,0.5 L10,0.5" Width="10" Height="1"
+                      Stroke="{Binding $parent[Button].Foreground}" StrokeThickness="1" />
+              </Button>
+              <Button x:Name="PART_MaximizeButton"
+                      Theme="{StaticResource CascadiaCaptionButton}"
+                      WindowDecorationProperties.ElementRole="MaximizeButton">
+                <Rectangle Width="10" Height="10" RadiusX="1.5" RadiusY="1.5"
+                           Stroke="{Binding $parent[Button].Foreground}" StrokeThickness="1" />
+              </Button>
+              <Button x:Name="PART_CloseButton"
+                      Classes="close"
+                      Theme="{StaticResource CascadiaCaptionButton}"
+                      WindowDecorationProperties.ElementRole="CloseButton">
+                <Path Data="M0,0 L10,10 M10,0 L0,10" Width="10" Height="10"
+                      Stroke="{Binding $parent[Button].Foreground}" StrokeThickness="1" />
+              </Button>
+            </StackPanel>
+          </WindowDrawnDecorationsContent.Overlay>
+          <WindowDrawnDecorationsContent.FullscreenPopover>
+            <Panel Height="{TemplateBinding DefaultTitleBarHeight}"
+                   VerticalAlignment="Top"
+                   Background="{DynamicResource CascadiaTitleBarBackgroundBrush}"
+                   WindowDecorationProperties.ElementRole="DecorationsElement">
+              <TextBlock Text="{TemplateBinding Title}" VerticalAlignment="Center" Margin="14,0,0,0" FontSize="12" />
+              <StackPanel HorizontalAlignment="Right" Orientation="Horizontal">
+                <Button x:Name="PART_PopoverFullScreenButton"
+                        Theme="{StaticResource CascadiaCaptionButton}"
+                        WindowDecorationProperties.ElementRole="FullScreenButton">
+                  <Path Data="M0,4 L0,0 L4,0 M6,0 L10,0 L10,4 M10,6 L10,10 L6,10 M4,10 L0,10 L0,6" Width="10" Height="10"
+                        Stroke="{Binding $parent[Button].Foreground}" StrokeThickness="1" />
+                </Button>
+                <Button x:Name="PART_PopoverCloseButton"
+                        Classes="close"
+                        Theme="{StaticResource CascadiaCaptionButton}"
+                        WindowDecorationProperties.ElementRole="CloseButton">
+                  <Path Data="M0,0 L10,10 M10,0 L0,10" Width="10" Height="10"
+                        Stroke="{Binding $parent[Button].Foreground}" StrokeThickness="1" />
+                </Button>
+              </StackPanel>
+            </Panel>
+          </WindowDrawnDecorationsContent.FullscreenPopover>
+        </WindowDrawnDecorationsContent>
+      </WindowDrawnDecorationsTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <!-- ===================================================================================
+       Feedback: ProgressRing, BusyArea, toasts
+       =================================================================================== -->
+
+  <ControlTheme x:Key="{x:Type controls:ProgressRing}" TargetType="controls:ProgressRing">
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaAccentBrush}" />
+    <Setter Property="Width" Value="28" />
+    <Setter Property="Height" Value="28" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <Ellipse Stroke="{DynamicResource CascadiaTrackFillBrush}"
+                   StrokeThickness="{TemplateBinding StrokeThickness}" />
+          <Arc Name="PART_Arc"
+               Stroke="{TemplateBinding Foreground}"
+               StrokeThickness="{TemplateBinding StrokeThickness}"
+               StrokeLineCap="Round"
+               StartAngle="-90"
+               SweepAngle="110"
+               RenderTransformOrigin="50%,50%">
+            <Arc.RenderTransform>
+              <RotateTransform />
+            </Arc.RenderTransform>
+          </Arc>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+    <Style Selector="^:not(:active) /template/ Arc#PART_Arc">
+      <Setter Property="IsVisible" Value="False" />
+    </Style>
+    <Style Selector="^:active /template/ Arc#PART_Arc">
+      <Style.Animations>
+        <Animation Duration="0:0:0.9" IterationCount="INFINITE">
+          <KeyFrame Cue="0%">
+            <Setter Property="RotateTransform.Angle" Value="0" />
+          </KeyFrame>
+          <KeyFrame Cue="100%">
+            <Setter Property="RotateTransform.Angle" Value="360" />
+          </KeyFrame>
+        </Animation>
+      </Style.Animations>
+    </Style>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type controls:BusyArea}" TargetType="controls:BusyArea">
+    <Setter Property="HorizontalContentAlignment" Value="Stretch" />
+    <Setter Property="VerticalContentAlignment" Value="Stretch" />
+    <Setter Property="Template">
+      <ControlTemplate>
+        <Panel>
+          <ContentPresenter Name="PART_ContentPresenter"
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"
+                            Padding="{TemplateBinding Padding}"
+                            HorizontalContentAlignment="{TemplateBinding HorizontalContentAlignment}"
+                            VerticalContentAlignment="{TemplateBinding VerticalContentAlignment}" />
+          <Border Name="PART_Overlay"
+                  Background="{DynamicResource CascadiaScrimBrush}"
+                  CornerRadius="{TemplateBinding CornerRadius}"
+                  IsVisible="{TemplateBinding IsBusy}">
+            <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="10">
+              <controls:ProgressRing HorizontalAlignment="Center" IsActive="{TemplateBinding IsBusy}" />
+              <TextBlock Text="{TemplateBinding BusyText}"
+                         HorizontalAlignment="Center"
+                         TextAlignment="Center"
+                         TextWrapping="Wrap"
+                         Foreground="{DynamicResource CascadiaTextSecondaryBrush}"
+                         IsVisible="{Binding $self.Text, Converter={x:Static StringConverters.IsNotNullOrEmpty}}" />
+            </StackPanel>
+          </Border>
+        </Panel>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+
+  <ControlTheme x:Key="{x:Type toasts:ToastHost}" TargetType="toasts:ToastHost">
+    <Setter Property="Template">
+      <ControlTemplate>
+        <ItemsControl Name="PART_Items"
+                      ItemsSource="{Binding Manager.Toasts, RelativeSource={RelativeSource TemplatedParent}}"
+                      HorizontalAlignment="{TemplateBinding ToastHorizontalAlignment}"
+                      VerticalAlignment="{TemplateBinding ToastVerticalAlignment}"
+                      Margin="16"
+                      MaxWidth="400">
+          <ItemsControl.ItemsPanel>
+            <ItemsPanelTemplate>
+              <StackPanel Spacing="8" />
+            </ItemsPanelTemplate>
+          </ItemsControl.ItemsPanel>
+          <ItemsControl.ItemTemplate>
+            <DataTemplate x:DataType="toasts:Toast">
+              <Border Classes="cascadia-toast"
+                      Classes.information="{Binding IsInformation}"
+                      Classes.success="{Binding IsSuccess}"
+                      Classes.warning="{Binding IsWarning}"
+                      Classes.error="{Binding IsError}">
+                <Grid ColumnDefinitions="Auto,*">
+                  <Panel Grid.Column="0" Width="20" Height="20" VerticalAlignment="Top" Margin="0,1,12,0">
+                    <Ellipse Classes="badge" />
+                    <TextBlock Classes="glyph" HorizontalAlignment="Center" VerticalAlignment="Center" />
+                  </Panel>
+                  <StackPanel Grid.Column="1" Spacing="2">
+                    <TextBlock Text="{Binding Title}" FontWeight="SemiBold" TextWrapping="Wrap" IsVisible="{Binding HasTitle}" />
+                    <TextBlock Text="{Binding Message}" TextWrapping="Wrap" Foreground="{DynamicResource CascadiaTextSecondaryBrush}" IsVisible="{Binding HasMessage}" />
+                  </StackPanel>
+                </Grid>
+              </Border>
+            </DataTemplate>
+          </ItemsControl.ItemTemplate>
+        </ItemsControl>
+      </ControlTemplate>
+    </Setter>
+  </ControlTheme>
+</ResourceDictionary>

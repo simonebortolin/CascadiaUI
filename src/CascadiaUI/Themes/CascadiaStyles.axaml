@@ -1,0 +1,247 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:controls="using:CascadiaUI.Controls">
+  <!-- Selector styles layered on top of Fluent's control themes. Styles beat ControlTheme
+       setters, which is what lets these reshape Fluent's templates without copying them. -->
+
+  <!-- ===== Typography ===== -->
+  <Style Selector="TextBlock.h1, SelectableTextBlock.h1">
+    <Setter Property="FontSize" Value="26" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="TextBlock.h2, SelectableTextBlock.h2">
+    <Setter Property="FontSize" Value="19" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="TextBlock.h3, SelectableTextBlock.h3">
+    <Setter Property="FontSize" Value="15" />
+    <Setter Property="FontWeight" Value="SemiBold" />
+  </Style>
+  <Style Selector="TextBlock.caption, SelectableTextBlock.caption">
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextSecondaryBrush}" />
+  </Style>
+  <Style Selector="TextBlock.secondary, SelectableTextBlock.secondary">
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextSecondaryBrush}" />
+  </Style>
+  <Style Selector="TextBlock.mono, SelectableTextBlock.mono">
+    <Setter Property="FontFamily" Value="{DynamicResource CascadiaMonoFontFamily}" />
+  </Style>
+  <Style Selector="TextBox.mono">
+    <Setter Property="FontFamily" Value="{DynamicResource CascadiaMonoFontFamily}" />
+  </Style>
+  <Style Selector="TextBlock.link">
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaAccentTextBrush}" />
+    <Setter Property="Cursor" Value="Hand" />
+  </Style>
+  <Style Selector="TextBlock.link:pointerover">
+    <Setter Property="TextDecorations" Value="Underline" />
+  </Style>
+
+  <!-- ===== Surfaces ===== -->
+  <Style Selector="Border.card">
+    <Setter Property="Background" Value="{DynamicResource CascadiaCardBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaCardStrokeBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource CascadiaCardCornerRadius}" />
+    <Setter Property="Padding" Value="16" />
+  </Style>
+  <Style Selector="Border.statusbar">
+    <Setter Property="Background" Value="{DynamicResource CascadiaWindowBackgroundBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaDividerBrush}" />
+    <Setter Property="BorderThickness" Value="0,1,0,0" />
+    <Setter Property="Padding" Value="12,5" />
+    <Setter Property="TextElement.FontSize" Value="12" />
+    <Setter Property="TextElement.Foreground" Value="{DynamicResource CascadiaTextSecondaryBrush}" />
+  </Style>
+  <Style Selector="Border.overlay">
+    <Setter Property="Background" Value="{DynamicResource CascadiaPopupBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaPopupStrokeBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource OverlayCornerRadius}" />
+    <Setter Property="BoxShadow" Value="{DynamicResource CascadiaOverlayShadow}" />
+    <Setter Property="Padding" Value="12,10" />
+  </Style>
+  <Style Selector="Separator">
+    <Setter Property="Background" Value="{DynamicResource CascadiaDividerBrush}" />
+  </Style>
+
+  <!-- ===== Buttons ===== -->
+  <Style Selector="Button, ToggleButton, RepeatButton, DropDownButton, SplitButton">
+    <Setter Property="CornerRadius" Value="{DynamicResource ControlCornerRadius}" />
+  </Style>
+
+  <Style Selector="Button.subtle, ToggleButton.subtle, RepeatButton.subtle">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="Button.subtle:pointerover /template/ ContentPresenter#PART_ContentPresenter, ToggleButton.subtle:pointerover /template/ ContentPresenter#PART_ContentPresenter, RepeatButton.subtle:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource CascadiaSubtleHoverBrush}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="Button.subtle:pressed /template/ ContentPresenter#PART_ContentPresenter, ToggleButton.subtle:pressed /template/ ContentPresenter#PART_ContentPresenter, RepeatButton.subtle:pressed /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource CascadiaSubtlePressedBrush}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="Button.subtle:disabled /template/ ContentPresenter#PART_ContentPresenter, ToggleButton.subtle:disabled /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+  <Style Selector="ToggleButton.subtle:checked /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource CascadiaAccentSubtleBrush}" />
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextPrimaryBrush}" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+  </Style>
+
+  <Style Selector="Button.danger">
+    <Setter Property="Background" Value="{DynamicResource CascadiaDangerFillBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaDangerFillBrush}" />
+    <Setter Property="Foreground" Value="White" />
+  </Style>
+  <Style Selector="Button.danger:pointerover /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource CascadiaDangerFillBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaDangerFillBrush}" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="Opacity" Value="0.9" />
+  </Style>
+  <Style Selector="Button.danger:pressed /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Background" Value="{DynamicResource CascadiaDangerFillBrush}" />
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="Opacity" Value="0.8" />
+  </Style>
+
+  <Style Selector="Button.icon, ToggleButton.icon">
+    <Setter Property="Padding" Value="6" />
+    <Setter Property="MinWidth" Value="0" />
+  </Style>
+
+  <!-- ===== Text input: macOS-style focus ring instead of Fluent's thick underline ===== -->
+  <Style Selector="TextBox:focus /template/ Border#PART_BorderElement, TextBox:focus-within /template/ Border#PART_BorderElement">
+    <Setter Property="BoxShadow" Value="{DynamicResource CascadiaFocusRingShadow}" />
+  </Style>
+  <Style Selector="ComboBox:focus-visible /template/ Border#Background, ComboBox:dropdownopen /template/ Border#Background">
+    <Setter Property="BoxShadow" Value="{DynamicResource CascadiaFocusRingShadow}" />
+  </Style>
+  <Style Selector="NumericUpDown /template/ TextBox">
+    <Setter Property="CornerRadius" Value="{Binding $parent[NumericUpDown].CornerRadius}" />
+  </Style>
+
+  <!-- ===== Lists, trees, menus: inset rounded rows, macOS sidebar style ===== -->
+  <Style Selector="ListBox">
+    <Setter Property="Background" Value="{DynamicResource CascadiaSurfaceBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaCardStrokeBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="8" />
+    <Setter Property="Padding" Value="4" />
+  </Style>
+  <Style Selector="ListBox.flat">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderThickness" Value="0" />
+    <Setter Property="Padding" Value="0" />
+  </Style>
+  <Style Selector="ListBoxItem">
+    <Setter Property="CornerRadius" Value="6" />
+    <Setter Property="Margin" Value="0,1" />
+    <Setter Property="Padding" Value="10,7" />
+  </Style>
+  <Style Selector="ListBoxItem:selected /template/ ContentPresenter#PART_ContentPresenter">
+    <Setter Property="Foreground" Value="{DynamicResource CascadiaTextPrimaryBrush}" />
+  </Style>
+  <Style Selector="TreeViewItem">
+    <Setter Property="CornerRadius" Value="6" />
+  </Style>
+  <Style Selector="ComboBoxItem">
+    <Setter Property="CornerRadius" Value="6" />
+    <Setter Property="Margin" Value="4,1" />
+  </Style>
+  <Style Selector="MenuItem">
+    <Setter Property="CornerRadius" Value="6" />
+  </Style>
+  <Style Selector="MenuFlyoutPresenter MenuItem, ContextMenu MenuItem, MenuItem MenuItem">
+    <Setter Property="Margin" Value="4,0" />
+  </Style>
+  <Style Selector="Menu">
+    <Setter Property="Background" Value="Transparent" />
+  </Style>
+  <Style Selector="Menu > MenuItem">
+    <Setter Property="Padding" Value="10,0" />
+    <Setter Property="Height" Value="28" />
+    <Setter Property="Margin" Value="1,0" />
+  </Style>
+
+  <!-- ===== Containers ===== -->
+  <Style Selector="Expander">
+    <Setter Property="CornerRadius" Value="{DynamicResource CascadiaCardCornerRadius}" />
+  </Style>
+  <Style Selector="ToolTip">
+    <Setter Property="CornerRadius" Value="6" />
+  </Style>
+  <Style Selector="CheckBox">
+    <Setter Property="CornerRadius" Value="4" />
+  </Style>
+
+  <!-- ===== Tabs: macOS segmented ("pills") items ===== -->
+  <Style Selector="TabControl.pills > TabItem">
+    <Setter Property="CornerRadius" Value="{DynamicResource CascadiaPillCornerRadius}" />
+    <Setter Property="Height" Value="NaN" />
+    <Setter Property="MinHeight" Value="28" />
+    <Setter Property="Padding" Value="14,4" />
+    <Setter Property="MinWidth" Value="0" />
+    <Setter Property="HorizontalContentAlignment" Value="Center" />
+  </Style>
+  <Style Selector="TabControl.pills > TabItem:selected">
+    <Setter Property="Background" Value="{DynamicResource CascadiaSegmentSelectedBrush}" />
+    <Setter Property="controls:TabItemAssist.Shadow" Value="{DynamicResource CascadiaRaisedShadow}" />
+  </Style>
+
+  <!-- ===== Toasts ===== -->
+  <Style Selector="Border.cascadia-toast">
+    <Setter Property="Background" Value="{DynamicResource CascadiaPopupBrush}" />
+    <Setter Property="BorderBrush" Value="{DynamicResource CascadiaPopupStrokeBrush}" />
+    <Setter Property="BorderThickness" Value="1" />
+    <Setter Property="CornerRadius" Value="{DynamicResource OverlayCornerRadius}" />
+    <Setter Property="Padding" Value="14,12" />
+    <Setter Property="MinWidth" Value="260" />
+    <Setter Property="BoxShadow" Value="{DynamicResource CascadiaOverlayShadow}" />
+    <Setter Property="Cursor" Value="Hand" />
+    <Style.Animations>
+      <Animation Duration="0:0:0.2" Easing="CubicEaseOut" FillMode="Forward">
+        <KeyFrame Cue="0%">
+          <Setter Property="Opacity" Value="0" />
+          <Setter Property="TranslateTransform.Y" Value="10" />
+        </KeyFrame>
+        <KeyFrame Cue="100%">
+          <Setter Property="Opacity" Value="1" />
+          <Setter Property="TranslateTransform.Y" Value="0" />
+        </KeyFrame>
+      </Animation>
+    </Style.Animations>
+  </Style>
+  <Style Selector="Border.cascadia-toast Ellipse.badge">
+    <Setter Property="Fill" Value="{DynamicResource CascadiaInfoBrush}" />
+  </Style>
+  <Style Selector="Border.cascadia-toast TextBlock.glyph">
+    <Setter Property="Foreground" Value="White" />
+    <Setter Property="FontSize" Value="12" />
+    <Setter Property="FontWeight" Value="Bold" />
+    <Setter Property="Text" Value="i" />
+  </Style>
+  <Style Selector="Border.cascadia-toast.success Ellipse.badge">
+    <Setter Property="Fill" Value="{DynamicResource CascadiaSuccessBrush}" />
+  </Style>
+  <Style Selector="Border.cascadia-toast.success TextBlock.glyph">
+    <Setter Property="Text" Value="✓" />
+  </Style>
+  <Style Selector="Border.cascadia-toast.warning Ellipse.badge">
+    <Setter Property="Fill" Value="{DynamicResource CascadiaWarningBrush}" />
+  </Style>
+  <Style Selector="Border.cascadia-toast.warning TextBlock.glyph">
+    <Setter Property="Text" Value="!" />
+  </Style>
+  <Style Selector="Border.cascadia-toast.error Ellipse.badge">
+    <Setter Property="Fill" Value="{DynamicResource CascadiaErrorBrush}" />
+  </Style>
+  <Style Selector="Border.cascadia-toast.error TextBlock.glyph">
+    <Setter Property="Text" Value="✕" />
+  </Style>
+</Styles>

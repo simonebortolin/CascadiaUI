@@ -1,0 +1,11 @@
+<Solution>
+  <Folder Name="/samples/">
+    <Project Path="samples/CascadiaUI.Gallery/CascadiaUI.Gallery.csproj" />
+  </Folder>
+  <Folder Name="/src/">
+    <Project Path="src/CascadiaUI/CascadiaUI.csproj" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="tests/CascadiaUI.Tests/CascadiaUI.Tests.csproj" />
+  </Folder>
+</Solution>

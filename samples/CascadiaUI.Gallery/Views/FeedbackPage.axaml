@@ -1,0 +1,69 @@
+<UserControl xmlns="https://github.com/avaloniaui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:cascadia="https://github.com/simonebortolin/CascadiaUI"
+             xmlns:vm="using:CascadiaUI.Gallery.ViewModels"
+             x:Class="CascadiaUI.Gallery.Views.FeedbackPage"
+             x:DataType="vm:FeedbackPageViewModel">
+  <Panel>
+    <ScrollViewer>
+      <StackPanel Margin="28,24" Spacing="20">
+        <StackPanel Spacing="4">
+          <TextBlock Classes="h1" Text="Feedback" />
+          <TextBlock Classes="secondary" Text="Busy overlays, spinners, progress and toast notifications - the SukiUI replacements." />
+        </StackPanel>
+
+        <Grid ColumnDefinitions="*,20,*">
+          <Border Classes="card">
+            <StackPanel Spacing="12">
+              <Grid ColumnDefinitions="*,Auto">
+                <TextBlock Classes="h3" Text="BusyArea" VerticalAlignment="Center" />
+                <ToggleSwitch Grid.Column="1" IsChecked="{Binding IsBusy}" OnContent="Busy" OffContent="Idle" />
+              </Grid>
+              <cascadia:BusyArea IsBusy="{Binding IsBusy}" BusyText="Scanning for printers…" CornerRadius="8">
+                <ListBox Height="150" SelectedIndex="1">
+                  <ListBoxItem Content="LETRA-200B-4F2A" />
+                  <ListBoxItem Content="LETRA-200B-91C0" />
+                  <ListBoxItem Content="Office printer" />
+                </ListBox>
+              </cascadia:BusyArea>
+            </StackPanel>
+          </Border>
+
+          <Border Grid.Column="2" Classes="card">
+            <StackPanel Spacing="14">
+              <TextBlock Classes="h3" Text="Progress" />
+              <StackPanel Orientation="Horizontal" Spacing="18">
+                <cascadia:ProgressRing />
+                <cascadia:ProgressRing Width="20" Height="20" StrokeThickness="2.5" />
+                <cascadia:ProgressRing Width="40" Height="40" StrokeThickness="4" />
+              </StackPanel>
+              <ProgressBar Value="62" />
+              <ProgressBar IsIndeterminate="True" />
+            </StackPanel>
+          </Border>
+        </Grid>
+
+        <Border Classes="card">
+          <StackPanel Spacing="12">
+            <TextBlock Classes="h3" Text="Toasts" />
+            <WrapPanel ItemSpacing="8" LineSpacing="8">
+              <Button Content="Information" Command="{Binding ShowToastCommand}" CommandParameter="info" />
+              <Button Classes="accent" Content="Success" Command="{Binding ShowToastCommand}" CommandParameter="success" />
+              <Button Content="Warning" Command="{Binding ShowToastCommand}" CommandParameter="warning" />
+              <Button Classes="danger" Content="Error" Command="{Binding ShowToastCommand}" CommandParameter="error" />
+            </WrapPanel>
+            <CheckBox Content="Show &quot;stats for nerds&quot; overlay" IsChecked="{Binding IsStatsVisible}" />
+          </StackPanel>
+        </Border>
+      </StackPanel>
+    </ScrollViewer>
+
+    <Border Classes="overlay"
+            IsVisible="{Binding IsStatsVisible}"
+            HorizontalAlignment="Left"
+            VerticalAlignment="Bottom"
+            Margin="28">
+      <TextBlock Classes="mono" FontSize="12" Text="{Binding Stats}" />
+    </Border>
+  </Panel>
+</UserControl>
