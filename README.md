@@ -131,11 +131,18 @@ dotnet run --project samples/CascadiaUI.Gallery
 The test suite (`dotnet test`) renders every gallery page in light and dark through real Skia into
 `artifacts/screenshots`. CI uploads those images on every run.
 
-## Publishing
+## Releases
 
-Push a tag `vX.Y.Z` to pack `CascadiaUI X.Y.Z` and publish it to nuget.org with
-[Trusted Publishing](https://www.nuget.org/account/trustedpublishing). This needs the `NUGET_USER`
-repository variable.
+The version lives in [`BuildVersion.props`](BuildVersion.props) (`<VersionPrefix>`). CI does the rest:
+
+- **Pull request**: builds, tests, packs `X.Y.Z-pr.<PR>.<run>` and attaches the package plus the
+  Windows/Linux/macOS gallery builds to a pre-release, which is replaced on every push and deleted
+  when the PR closes. It warns if `vX.Y.Z` is already released.
+- **Merge to `main`**: if `vX.Y.Z` doesn't exist yet, CI tags it, creates the GitHub Release (with the
+  package, the gallery builds and checksums) and publishes `CascadiaUI X.Y.Z` to GitHub Packages and
+  to nuget.org via [Trusted Publishing](https://www.nuget.org/account/trustedpublishing), which needs
+  the `NUGET_USER` repository variable. A change that should not release, such as a docs or CI
+  change, carries `[no-new-version]` in its commit message.
 
 ## License
 
