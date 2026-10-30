@@ -17,8 +17,16 @@ differs too much (tabs, window, busy overlay, toasts).
 | Light | Dark |
 | --- | --- |
 | ![Buttons, light](docs/screenshots/01-buttons-inputs-light.png) | ![Buttons, dark](docs/screenshots/01-buttons-inputs-dark.png) |
+| ![Lists, light](docs/screenshots/02-lists-trees-light.png) | ![Lists, dark](docs/screenshots/02-lists-trees-dark.png) |
 | ![Tabs, light](docs/screenshots/03-tabs-light.png) | ![Tabs, dark](docs/screenshots/03-tabs-dark.png) |
 | ![Feedback, light](docs/screenshots/04-feedback-light.png) | ![Feedback, dark](docs/screenshots/04-feedback-dark.png) |
+| ![Text and surfaces, light](docs/screenshots/05-text-surfaces-light.png) | ![Text and surfaces, dark](docs/screenshots/05-text-surfaces-dark.png) |
+
+### In use
+
+| [SharpMediaInfo](https://github.com/simonebortolin/SharpMediaInfo) | [Label Studio 200B](https://github.com/simonebortolin/Letra200bSharp) |
+| --- | --- |
+| ![SharpMediaInfo](docs/screenshots/app-sharpmediainfo-light.png) | ![Label Studio 200B](docs/screenshots/app-labelstudio-dark.png) |
 
 ## Getting started
 
