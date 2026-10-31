@@ -10,6 +10,8 @@
     <Description>A Fluent × macOS theme for Avalonia 12: neutral light/dark palettes, a customisable accent, Windows Terminal / SourceGit-style tabs that live in the title bar, plus BusyArea, ProgressRing and toast notifications.</Description>
     <PackageTags>avalonia;theme;fluent;macos;tabs;ui;cascadia</PackageTags>
     <PackageReadmeFile>README.md</PackageReadmeFile>
+    <IncludeSymbols>true</IncludeSymbols>
+    <SymbolPackageFormat>snupkg</SymbolPackageFormat>
   </PropertyGroup>
 
   <ItemGroup>
