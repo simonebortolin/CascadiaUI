@@ -116,9 +116,13 @@ jobs:
       - name: Build
         run: dotnet build CascadiaUI.slnx -c Release -p:VersionSuffix="$VERSION_SUFFIX" -p:ContinuousIntegrationBuild=true
 
-      # The screenshot tests render every gallery page in light and dark through real Skia.
+      # TUnit on Microsoft.Testing.Platform: the test project is an executable. The screenshot
+      # tests render every gallery page in light and dark through real Skia.
       - name: Test
-        run: dotnet test CascadiaUI.slnx -c Release --no-build --logger trx --results-directory TestResults
+        run: |
+          dotnet run --project tests/CascadiaUI.Tests -c Release --no-build -- \
+            --report-trx --report-trx-filename CascadiaUI.Tests.trx \
+            --results-directory "$GITHUB_WORKSPACE/TestResults"
         env:
           CASCADIA_SCREENSHOTS: ${{ github.workspace }}/artifacts/screenshots
 

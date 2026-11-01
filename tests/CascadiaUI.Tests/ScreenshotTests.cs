@@ -1,7 +1,6 @@
 using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Headless;
-using Avalonia.Headless.XUnit;
 using Avalonia.Media.Imaging;
 using Avalonia.Styling;
 using Avalonia.Threading;
@@ -39,10 +38,10 @@ public class ScreenshotTests
         return dir?.FullName ?? AppContext.BaseDirectory;
     }
 
-    [AvaloniaTheory]
-    [InlineData("Light")]
-    [InlineData("Dark")]
-    public void Gallery_RendersEveryPage(string variant)
+    [Test]
+    [Arguments("Light")]
+    [Arguments("Dark")]
+    public async Task Gallery_RendersEveryPage(string variant)
     {
         var app = Application.Current!;
         app.RequestedThemeVariant = variant == "Dark" ? ThemeVariant.Dark : ThemeVariant.Light;
@@ -63,7 +62,7 @@ public class ScreenshotTests
 
                 Pump();
                 var frame = window.CaptureRenderedFrame();
-                Assert.NotNull(frame);
+                await Assert.That(frame).IsNotNull();
 
                 var name = vm.Pages[i].Header.ToLowerInvariant().Replace(" & ", "-").Replace(' ', '-');
                 frame!.Save(Path.Combine(OutputDirectory, $"{i + 1:00}-{name}-{variant.ToLowerInvariant()}.png"), PngBitmapEncoderOptions.Default);
