@@ -291,7 +291,8 @@
     <Setter Property="Template">
       <ControlTemplate>
         <DataValidationErrors>
-          <Border Background="{TemplateBinding Background}"
+          <Border Name="PART_SpinnerBorder"
+                  Background="{TemplateBinding Background}"
                   BorderBrush="{TemplateBinding BorderBrush}"
                   BorderThickness="{TemplateBinding BorderThickness}"
                   CornerRadius="{TemplateBinding CornerRadius}"

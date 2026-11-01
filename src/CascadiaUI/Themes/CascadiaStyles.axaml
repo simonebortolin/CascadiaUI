@@ -125,6 +125,37 @@
   <Style Selector="NumericUpDown /template/ TextBox">
     <Setter Property="CornerRadius" Value="{Binding $parent[NumericUpDown].CornerRadius}" />
     <Setter Property="MinWidth" Value="0" />
+    <Setter Property="VerticalContentAlignment" Value="Center" />
+  </Style>
+  <!-- NumericUpDown: the inner TextBox stays chrome-less in every state (its own focus border
+       would only wrap the number, not the steppers); the whole box shows hover and focus. -->
+  <Style Selector="NumericUpDown /template/ TextBox /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BoxShadow" Value="0 0 0 0 Transparent" />
+  </Style>
+  <Style Selector="NumericUpDown /template/ TextBox:pointerover /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BoxShadow" Value="0 0 0 0 Transparent" />
+  </Style>
+  <Style Selector="NumericUpDown /template/ TextBox:focus /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BoxShadow" Value="0 0 0 0 Transparent" />
+  </Style>
+  <Style Selector="NumericUpDown /template/ TextBox:focus-within /template/ Border#PART_BorderElement">
+    <Setter Property="Background" Value="Transparent" />
+    <Setter Property="BorderBrush" Value="Transparent" />
+    <Setter Property="BoxShadow" Value="0 0 0 0 Transparent" />
+  </Style>
+  <Style Selector="NumericUpDown:pointerover /template/ ButtonSpinner /template/ Border#PART_SpinnerBorder">
+    <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushPointerOver}" />
+  </Style>
+  <Style Selector="NumericUpDown:focus-within /template/ ButtonSpinner /template/ Border#PART_SpinnerBorder">
+    <Setter Property="BorderBrush" Value="{DynamicResource TextControlBorderBrushFocused}" />
+    <Setter Property="Background" Value="{DynamicResource TextControlBackgroundFocused}" />
+    <Setter Property="BoxShadow" Value="{DynamicResource CascadiaFocusRingShadow}" />
   </Style>
 
   <!-- ===== Lists, trees, menus: inset rounded rows, macOS sidebar style ===== -->
