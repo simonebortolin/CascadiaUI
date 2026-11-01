@@ -4,7 +4,8 @@
 into one look that feels at home on Windows, macOS, Linux and Android:
 
 - **Neutral light and dark palettes.** Light uses soft greys around white surfaces; dark uses deep greys, never pure black.
-- **One customisable accent.** Every hover, pressed, selection, focus-ring and link shade is derived from it, and it can be changed at runtime. The default is a deep green whose white text meets WCAG AA.
+- **One customisable accent.** Every hover, pressed, selection, focus-ring and link shade is derived from it, and it can be changed at runtime. The default is a deep green.
+- **Accessible accent fills.** Accent backgrounds that carry text (the `accent` button, checked toggle buttons) use the accent adjusted just enough to keep that text at WCAG AA (4.5:1). Text-free uses (focus ring, checkboxes, toggle switches, selection tints) keep the exact brand colour. So a bright accent such as `#0A84FF` still gives accessible buttons.
 - **Windows Terminal / SourceGit-style tabs.** The tabs sit in the title bar. They can be closed (× or middle click), added (+) and reordered by dragging. A tab dragged off the strip raises an event, so the app can move it to another window.
 - **macOS touches.** Segmented "pill" tabs, rounded inset list rows, a soft focus ring on text fields, flat cards.
 - **Native caption buttons.** Windows keeps its own (snap layouts work), macOS keeps the traffic lights, and on Linux the theme draws flat Terminal-like ones.

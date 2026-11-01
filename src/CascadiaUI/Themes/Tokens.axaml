@@ -37,6 +37,20 @@
   <SolidColorBrush x:Key="CascadiaAccentBrush" Color="{DynamicResource SystemAccentColor}" />
   <SolidColorBrush x:Key="CascadiaAccentForegroundBrush" Color="{DynamicResource CascadiaAccentForegroundColor}" />
 
+  <!-- Accent fills that carry text (accent buttons, checked toggle buttons) use the accent
+       adjusted to WCAG AA (4.5:1) with their text; hover/pressed only move further from it.
+       Text-free accent uses (focus ring, checkboxes, toggle switches) keep the accent itself. -->
+  <SolidColorBrush x:Key="CascadiaAccentFillBrush" Color="{DynamicResource CascadiaAccentFillColor}" />
+  <SolidColorBrush x:Key="AccentButtonBackground" Color="{DynamicResource CascadiaAccentFillColor}" />
+  <SolidColorBrush x:Key="AccentButtonBackgroundPointerOver" Color="{DynamicResource CascadiaAccentFillHoverColor}" />
+  <SolidColorBrush x:Key="AccentButtonBackgroundPressed" Color="{DynamicResource CascadiaAccentFillPressedColor}" />
+  <SolidColorBrush x:Key="ToggleButtonBackgroundChecked" Color="{DynamicResource CascadiaAccentFillColor}" />
+  <SolidColorBrush x:Key="ToggleButtonBackgroundCheckedPointerOver" Color="{DynamicResource CascadiaAccentFillHoverColor}" />
+  <SolidColorBrush x:Key="ToggleButtonBackgroundCheckedPressed" Color="{DynamicResource CascadiaAccentFillPressedColor}" />
+  <SolidColorBrush x:Key="SplitButtonBackgroundChecked" Color="{DynamicResource CascadiaAccentFillColor}" />
+  <SolidColorBrush x:Key="SplitButtonBackgroundCheckedPointerOver" Color="{DynamicResource CascadiaAccentFillHoverColor}" />
+  <SolidColorBrush x:Key="SplitButtonBackgroundCheckedPressed" Color="{DynamicResource CascadiaAccentFillPressedColor}" />
+
   <!-- Text on accent fills follows the accent's own contrast (white, or near-black on light accents). -->
   <SolidColorBrush x:Key="AccentButtonForeground" Color="{DynamicResource CascadiaAccentForegroundColor}" />
   <SolidColorBrush x:Key="AccentButtonForegroundPointerOver" Color="{DynamicResource CascadiaAccentForegroundColor}" />

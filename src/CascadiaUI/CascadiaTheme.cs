@@ -123,6 +123,9 @@ public class CascadiaTheme : Styles
         Resources["CascadiaAccentSubtlePressedColor"] = shades.WithAlpha(0x47);
         Resources["CascadiaFocusRingColor"] = shades.WithAlpha(0x59);
         Resources["CascadiaAccentForegroundColor"] = shades.Foreground;
+        Resources["CascadiaAccentFillColor"] = shades.Fill;
+        Resources["CascadiaAccentFillHoverColor"] = shades.FillHover;
+        Resources["CascadiaAccentFillPressedColor"] = shades.FillPressed;
         Resources["CascadiaFocusRingShadow"] = new BoxShadows(new BoxShadow { Blur = 6, Color = shades.WithAlpha(0x8C) });
     }
 }

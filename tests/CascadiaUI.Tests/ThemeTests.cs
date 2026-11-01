@@ -75,4 +75,48 @@ public class ThemeTests
     {
         Assert.Equal(Color.Parse(expected), AccentPalette.ContrastingForeground(Color.Parse(accent)));
     }
+
+    [Theory]
+    [InlineData("#0A84FF")] // Apple system blue: 3.65:1 with white, so the fill must darken
+    [InlineData("#16834A")] // the default green: already AA, so the fill is the accent itself
+    [InlineData("#D2600C")]
+    [InlineData("#FFD400")] // light accent: dark text, the fill lightens if needed
+    public void AccentFill_KeepsTextAtWcagAA_InEveryState(string accent)
+    {
+        var palette = AccentPalette.Create(Color.Parse(accent));
+
+        Assert.True(AccentPalette.Contrast(palette.Fill, palette.Foreground) >= AccentPalette.TextContrast);
+        Assert.True(AccentPalette.Contrast(palette.FillHover, palette.Foreground) >= AccentPalette.TextContrast);
+        Assert.True(AccentPalette.Contrast(palette.FillPressed, palette.Foreground) >= AccentPalette.TextContrast);
+        Assert.Equal(Color.Parse(accent), palette.Accent); // controls without text keep the accent
+    }
+
+    [Fact]
+    public void AccentFill_IsTheAccent_WhenItAlreadyPasses()
+    {
+        var palette = AccentPalette.Create(Color.Parse("#16834A"));
+        Assert.Equal(palette.Accent, palette.Fill);
+    }
+
+    [AvaloniaFact]
+    public void AccentButton_UsesTheTextSafeFill()
+    {
+        var theme = CascadiaTheme.Current!;
+        var original = theme.Accent;
+        try
+        {
+            theme.Accent = Color.Parse("#0A84FF");
+            var window = new Window();
+            window.Show();
+
+            Assert.True(window.TryFindResource("AccentButtonBackground", window.ActualThemeVariant, out var brush));
+            var fill = ((ISolidColorBrush)brush!).Color;
+            Assert.NotEqual(Color.Parse("#0A84FF"), fill);
+            Assert.True(AccentPalette.Contrast(fill, Colors.White) >= AccentPalette.TextContrast);
+        }
+        finally
+        {
+            theme.Accent = original;
+        }
+    }
 }
