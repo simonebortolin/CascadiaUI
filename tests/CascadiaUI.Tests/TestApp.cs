@@ -1,8 +1,14 @@
 using Avalonia;
 using Avalonia.Headless;
 using CascadiaUI.Tests;
+using TUnit.Core.Executors;
+using TUnit.Core.Interfaces;
 
 [assembly: AvaloniaTestApplication(typeof(TestAppBuilder))]
+[assembly: TestExecutor<AvaloniaTestExecutor>]
+// Every test runs on the one headless UI thread and some change app-wide state (accent,
+// density, light/dark), so they must not interleave at their awaits.
+[assembly: NotInParallel]
 
 namespace CascadiaUI.Tests;
 
@@ -20,4 +26,19 @@ public static class TestAppBuilder
             .UseSkia()
             .WithInterFont()
             .UseHeadless(new AvaloniaHeadlessPlatformOptions { UseHeadlessDrawing = false });
+}
+
+/// <summary>
+/// Runs every test on the Avalonia headless session's UI thread - TUnit's counterpart of
+/// Avalonia.Headless.XUnit's [AvaloniaFact].
+/// </summary>
+public sealed class AvaloniaTestExecutor : ITestExecutor
+{
+    public ValueTask ExecuteTest(TestContext context, Func<ValueTask> action) =>
+        new(HeadlessUnitTestSession.GetOrStartForAssembly(typeof(AvaloniaTestExecutor).Assembly)
+            .Dispatch(async () =>
+            {
+                await action();
+                return true;
+            }, CancellationToken.None));
 }

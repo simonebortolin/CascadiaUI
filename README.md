@@ -129,7 +129,7 @@ Every colour is a resource you can override in `Application.Resources`, e.g.
 dotnet run --project samples/CascadiaUI.Gallery
 ```
 
-The test suite (`dotnet test`) renders every gallery page in light and dark through real Skia into
+The test suite ([TUnit](https://tunit.dev); run it with `dotnet run --project tests/CascadiaUI.Tests`) renders every gallery page in light and dark through real Skia into
 `artifacts/screenshots`. CI uploads those images on every run.
 
 ## Releases
