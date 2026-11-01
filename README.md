@@ -17,17 +17,17 @@ differs too much (tabs, window, busy overlay, toasts).
 
 | Light | Dark |
 | --- | --- |
-| ![Buttons, light](docs/screenshots/01-buttons-inputs-light.png) | ![Buttons, dark](docs/screenshots/01-buttons-inputs-dark.png) |
-| ![Lists, light](docs/screenshots/02-lists-trees-light.png) | ![Lists, dark](docs/screenshots/02-lists-trees-dark.png) |
-| ![Tabs, light](docs/screenshots/03-tabs-light.png) | ![Tabs, dark](docs/screenshots/03-tabs-dark.png) |
-| ![Feedback, light](docs/screenshots/04-feedback-light.png) | ![Feedback, dark](docs/screenshots/04-feedback-dark.png) |
-| ![Text and surfaces, light](docs/screenshots/05-text-surfaces-light.png) | ![Text and surfaces, dark](docs/screenshots/05-text-surfaces-dark.png) |
+| ![Buttons, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/01-buttons-inputs-light.png) | ![Buttons, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/01-buttons-inputs-dark.png) |
+| ![Lists, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/02-lists-trees-light.png) | ![Lists, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/02-lists-trees-dark.png) |
+| ![Tabs, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/03-tabs-light.png) | ![Tabs, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/03-tabs-dark.png) |
+| ![Feedback, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/04-feedback-light.png) | ![Feedback, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/04-feedback-dark.png) |
+| ![Text and surfaces, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/05-text-surfaces-light.png) | ![Text and surfaces, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/05-text-surfaces-dark.png) |
 
 ### In use
 
 | [SharpMediaInfo](https://github.com/simonebortolin/SharpMediaInfo) | [Label Studio 200B](https://github.com/simonebortolin/Letra200bSharp) |
 | --- | --- |
-| ![SharpMediaInfo](docs/screenshots/app-sharpmediainfo-light.png) | ![Label Studio 200B](docs/screenshots/app-labelstudio-dark.png) |
+| ![SharpMediaInfo](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/app-sharpmediainfo-light.png) | ![Label Studio 200B](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/app-labelstudio-dark.png) |
 
 ## Getting started
 
@@ -117,7 +117,7 @@ Toasts.Show("Printed", "Label sent.", ToastSeverity.Success);    // auto-dismiss
 Every colour is a resource you can override in `Application.Resources`, e.g.
 `CascadiaWindowBackgroundBrush`, `CascadiaSurfaceBrush`, `CascadiaTitleBarBackgroundBrush`,
 `CascadiaCardBrush`, `CascadiaTextSecondaryBrush`, `CascadiaAccentSubtleBrush`. See
-[`Tokens.axaml`](src/CascadiaUI/Themes/Tokens.axaml).
+[`Tokens.axaml`](https://github.com/simonebortolin/CascadiaUI/blob/main/src/CascadiaUI/Themes/Tokens.axaml).
 
 ## Gallery
 
@@ -134,7 +134,7 @@ The test suite (`dotnet test`) renders every gallery page in light and dark thro
 
 ## Releases
 
-The version lives in [`BuildVersion.props`](BuildVersion.props) (`<VersionPrefix>`). CI does the rest:
+The version lives in [`BuildVersion.props`](https://github.com/simonebortolin/CascadiaUI/blob/main/BuildVersion.props) (`<VersionPrefix>`). CI does the rest:
 
 - **Pull request**: builds, tests, packs `X.Y.Z-pr.<PR>.<run>` and attaches the package plus the
   Windows/Linux/macOS gallery builds to a pre-release, which is replaced on every push and deleted
