@@ -1,5 +1,14 @@
 # Avalonia Cascadia Theme
 
+[![CI](https://github.com/simonebortolin/CascadiaUI/actions/workflows/ci.yml/badge.svg)](https://github.com/simonebortolin/CascadiaUI/actions/workflows/ci.yml)
+[![NuGet CascadiaUI](https://img.shields.io/nuget/v/CascadiaUI?label=CascadiaUI&logo=nuget)](https://www.nuget.org/packages/CascadiaUI)
+[![NuGet downloads](https://img.shields.io/nuget/dt/CascadiaUI?label=downloads&logo=nuget)](https://www.nuget.org/packages/CascadiaUI)
+[![GitHub release](https://img.shields.io/github/v/release/simonebortolin/CascadiaUI?logo=github)](https://github.com/simonebortolin/CascadiaUI/releases/latest)
+[![Avalonia 12](https://img.shields.io/badge/Avalonia-12-7c4dff)](https://avaloniaui.net/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/simonebortolin/CascadiaUI/blob/main/LICENSE)
+[![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![Platforms](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Android-lightgrey)](#getting-started)
+
 **CascadiaUI** is a theme for [Avalonia 12](https://avaloniaui.net) that mixes Fluent and macOS
 into one look that feels at home on Windows, macOS, Linux and Android:
 
@@ -17,17 +26,17 @@ differs too much (tabs, window, busy overlay, toasts).
 
 | Light | Dark |
 | --- | --- |
-| ![Buttons, light](docs/screenshots/01-buttons-inputs-light.png) | ![Buttons, dark](docs/screenshots/01-buttons-inputs-dark.png) |
-| ![Lists, light](docs/screenshots/02-lists-trees-light.png) | ![Lists, dark](docs/screenshots/02-lists-trees-dark.png) |
-| ![Tabs, light](docs/screenshots/03-tabs-light.png) | ![Tabs, dark](docs/screenshots/03-tabs-dark.png) |
-| ![Feedback, light](docs/screenshots/04-feedback-light.png) | ![Feedback, dark](docs/screenshots/04-feedback-dark.png) |
-| ![Text and surfaces, light](docs/screenshots/05-text-surfaces-light.png) | ![Text and surfaces, dark](docs/screenshots/05-text-surfaces-dark.png) |
+| ![Buttons, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/01-buttons-inputs-light.png) | ![Buttons, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/01-buttons-inputs-dark.png) |
+| ![Lists, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/02-lists-trees-light.png) | ![Lists, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/02-lists-trees-dark.png) |
+| ![Tabs, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/03-tabs-light.png) | ![Tabs, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/03-tabs-dark.png) |
+| ![Feedback, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/04-feedback-light.png) | ![Feedback, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/04-feedback-dark.png) |
+| ![Text and surfaces, light](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/05-text-surfaces-light.png) | ![Text and surfaces, dark](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/05-text-surfaces-dark.png) |
 
 ### In use
 
 | [SharpMediaInfo](https://github.com/simonebortolin/SharpMediaInfo) | [Label Studio 200B](https://github.com/simonebortolin/Letra200bSharp) |
 | --- | --- |
-| ![SharpMediaInfo](docs/screenshots/app-sharpmediainfo-light.png) | ![Label Studio 200B](docs/screenshots/app-labelstudio-dark.png) |
+| ![SharpMediaInfo](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/app-sharpmediainfo-light.png) | ![Label Studio 200B](https://raw.githubusercontent.com/simonebortolin/CascadiaUI/main/docs/screenshots/app-labelstudio-dark.png) |
 
 ## Getting started
 
@@ -117,7 +126,7 @@ Toasts.Show("Printed", "Label sent.", ToastSeverity.Success);    // auto-dismiss
 Every colour is a resource you can override in `Application.Resources`, e.g.
 `CascadiaWindowBackgroundBrush`, `CascadiaSurfaceBrush`, `CascadiaTitleBarBackgroundBrush`,
 `CascadiaCardBrush`, `CascadiaTextSecondaryBrush`, `CascadiaAccentSubtleBrush`. See
-[`Tokens.axaml`](src/CascadiaUI/Themes/Tokens.axaml).
+[`Tokens.axaml`](https://github.com/simonebortolin/CascadiaUI/blob/main/src/CascadiaUI/Themes/Tokens.axaml).
 
 ## Gallery
 
@@ -134,7 +143,7 @@ The test suite (`dotnet test`) renders every gallery page in light and dark thro
 
 ## Releases
 
-The version lives in [`BuildVersion.props`](BuildVersion.props) (`<VersionPrefix>`). CI does the rest:
+The version lives in [`BuildVersion.props`](https://github.com/simonebortolin/CascadiaUI/blob/main/BuildVersion.props) (`<VersionPrefix>`). CI does the rest:
 
 - **Pull request**: builds, tests, packs `X.Y.Z-pr.<PR>.<run>` and attaches the package plus the
   Windows/Linux/macOS gallery builds to a pre-release, which is replaced on every push and deleted
