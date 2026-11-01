@@ -32,6 +32,12 @@ public static class TestAppBuilder
 /// Runs every test on the Avalonia headless session's UI thread - TUnit's counterpart of
 /// Avalonia.Headless.XUnit's [AvaloniaFact].
 /// </summary>
+/// <remarks>
+/// Stop-gap until Avalonia ships its own TUnit adapter (AvaloniaUI/Avalonia#21353, proposed as
+/// <c>Avalonia.Headless.TUnit</c>, needs TUnit 1.44+). Then replace this class and the
+/// <c>TestExecutor</c> / <c>NotInParallel</c> assembly attributes with <c>[assembly: AvaloniaTest]</c>,
+/// which also runs the test-class constructor and [Before/After(Test)] hooks on the UI thread.
+/// </remarks>
 public sealed class AvaloniaTestExecutor : ITestExecutor
 {
     public ValueTask ExecuteTest(TestContext context, Func<ValueTask> action) =>
