@@ -3,6 +3,7 @@ using Avalonia.Controls;
 using Avalonia.Headless.XUnit;
 using Avalonia.Media;
 using Avalonia.Styling;
+using Avalonia.VisualTree;
 
 namespace CascadiaUI.Tests;
 
@@ -118,5 +119,31 @@ public class ThemeTests
         {
             theme.Accent = original;
         }
+    }
+
+    [AvaloniaFact]
+    public void NumericUpDown_ShowsFocusOnTheWholeBox_NotOnItsInnerTextBox()
+    {
+        var nud = new NumericUpDown { Value = 10, Width = 200 };
+        var plain = new TextBox { Width = 200 };
+        var window = new Window { Content = new StackPanel { Children = { nud, plain } } };
+        window.Show();
+
+        var inner = nud.GetVisualDescendants().OfType<TextBox>().Single();
+        inner.Focus();
+        Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+
+        var innerBorder = inner.GetVisualDescendants().OfType<Border>().First(b => b.Name == "PART_BorderElement");
+        var outerBorder = nud.GetVisualDescendants().OfType<Border>().First(b => b.Name == "PART_SpinnerBorder");
+        Assert.Equal(Colors.Transparent, ((ISolidColorBrush)innerBorder.BorderBrush!).Color);
+        Assert.Equal(theme_Accent(), ((ISolidColorBrush)outerBorder.BorderBrush!).Color);
+
+        // A plain TextBox keeps its own accent focus border.
+        plain.Focus();
+        Avalonia.Threading.Dispatcher.UIThread.RunJobs();
+        var plainBorder = plain.GetVisualDescendants().OfType<Border>().First(b => b.Name == "PART_BorderElement");
+        Assert.Equal(theme_Accent(), ((ISolidColorBrush)plainBorder.BorderBrush!).Color);
+
+        static Color theme_Accent() => CascadiaTheme.Current!.Accent;
     }
 }
