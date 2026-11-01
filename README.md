@@ -1,5 +1,14 @@
 # Avalonia Cascadia Theme
 
+[![CI](https://github.com/simonebortolin/CascadiaUI/actions/workflows/ci.yml/badge.svg)](https://github.com/simonebortolin/CascadiaUI/actions/workflows/ci.yml)
+[![NuGet CascadiaUI](https://img.shields.io/nuget/v/CascadiaUI?label=CascadiaUI&logo=nuget)](https://www.nuget.org/packages/CascadiaUI)
+[![NuGet downloads](https://img.shields.io/nuget/dt/CascadiaUI?label=downloads&logo=nuget)](https://www.nuget.org/packages/CascadiaUI)
+[![GitHub release](https://img.shields.io/github/v/release/simonebortolin/CascadiaUI?logo=github)](https://github.com/simonebortolin/CascadiaUI/releases/latest)
+[![Avalonia 12](https://img.shields.io/badge/Avalonia-12-7c4dff)](https://avaloniaui.net/)
+[![License: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://github.com/simonebortolin/CascadiaUI/blob/main/LICENSE)
+[![.NET 10](https://img.shields.io/badge/.NET-10-512BD4?logo=dotnet&logoColor=white)](https://dotnet.microsoft.com/)
+[![Platforms](https://img.shields.io/badge/platform-Windows%20%7C%20Linux%20%7C%20macOS%20%7C%20Android-lightgrey)](#getting-started)
+
 **CascadiaUI** is a theme for [Avalonia 12](https://avaloniaui.net) that mixes Fluent and macOS
 into one look that feels at home on Windows, macOS, Linux and Android:
 
