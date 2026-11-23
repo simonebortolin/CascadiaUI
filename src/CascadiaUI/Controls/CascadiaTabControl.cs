@@ -23,28 +23,13 @@ namespace CascadiaUI.Controls;
 /// Dragging a tab far enough above or below the strip raises <see cref="TabDraggedOutEvent"/>
 /// instead, so the app can start a cross-window drag-and-drop of its own.
 /// </remarks>
-public class CascadiaTabControl : TabControl
+public partial class CascadiaTabControl : TabControl
 {
-    public static readonly StyledProperty<bool> CanCloseTabsProperty =
-        AvaloniaProperty.Register<CascadiaTabControl, bool>(nameof(CanCloseTabs));
-
-    public static readonly StyledProperty<bool> CanReorderTabsProperty =
-        AvaloniaProperty.Register<CascadiaTabControl, bool>(nameof(CanReorderTabs), true);
-
     // The strip properties are attached ones hosted on TabControl, so the shared TabControl
     // template can TemplateBind them: a $parent[CascadiaTabControl] binding would wrongly pick up
     // an *outer* CascadiaTabControl when a plain TabControl is nested inside one.
     public static readonly AttachedProperty<bool> ShowAddButtonProperty =
         AvaloniaProperty.RegisterAttached<CascadiaTabControl, TabControl, bool>(nameof(ShowAddButton));
-
-    public static readonly StyledProperty<bool> IsInTitleBarProperty =
-        AvaloniaProperty.Register<CascadiaTabControl, bool>(nameof(IsInTitleBar));
-
-    public static readonly StyledProperty<ICommand?> CloseTabCommandProperty =
-        AvaloniaProperty.Register<CascadiaTabControl, ICommand?>(nameof(CloseTabCommand));
-
-    public static readonly StyledProperty<ICommand?> AddTabCommandProperty =
-        AvaloniaProperty.Register<CascadiaTabControl, ICommand?>(nameof(AddTabCommand));
 
     public static readonly AttachedProperty<object?> StripHeaderProperty =
         AvaloniaProperty.RegisterAttached<CascadiaTabControl, TabControl, object?>(nameof(StripHeader));
@@ -54,11 +39,6 @@ public class CascadiaTabControl : TabControl
 
     public static readonly AttachedProperty<Thickness> StripInsetsProperty =
         AvaloniaProperty.RegisterAttached<CascadiaTabControl, TabControl, Thickness>(nameof(StripInsets));
-
-    /// <summary>Whether a tab shows its close button. <see cref="CanCloseTabs"/> sets it on every tab
-    /// at style priority, so a tab can still opt out locally (e.g. a pinned "Home" tab).</summary>
-    public static readonly AttachedProperty<bool> IsClosableProperty =
-        AvaloniaProperty.RegisterAttached<CascadiaTabControl, TabItem, bool>("IsClosable");
 
     public static readonly RoutedEvent<TabEventArgs> TabCloseRequestedEvent =
         RoutedEvent.Register<CascadiaTabControl, TabEventArgs>(nameof(TabCloseRequested), RoutingStrategies.Bubble);
@@ -93,18 +73,12 @@ public class CascadiaTabControl : TabControl
     }
 
     /// <summary>Shows a close button on every tab (middle-click closes too).</summary>
-    public bool CanCloseTabs
-    {
-        get => GetValue(CanCloseTabsProperty);
-        set => SetValue(CanCloseTabsProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial bool CanCloseTabs { get; set; }
 
     /// <summary>Lets the user drag tabs to reorder them.</summary>
-    public bool CanReorderTabs
-    {
-        get => GetValue(CanReorderTabsProperty);
-        set => SetValue(CanReorderTabsProperty, value);
-    }
+    [GeneratedStyledProperty(DefaultValue = true)]
+    public partial bool CanReorderTabs { get; set; }
 
     /// <summary>Shows a "+" button right after the last tab.</summary>
     public bool ShowAddButton
@@ -118,27 +92,18 @@ public class CascadiaTabControl : TabControl
     /// have <see cref="CascadiaWindow.ExtendContentIntoTitleBar"/> set): the strip gets the title bar
     /// height, steps out of the caption buttons' way and doubles as window-drag area.
     /// </summary>
-    public bool IsInTitleBar
-    {
-        get => GetValue(IsInTitleBarProperty);
-        set => SetValue(IsInTitleBarProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial bool IsInTitleBar { get; set; }
 
     /// <summary>Invoked with the tab's item (its data item, or the <see cref="TabItem"/> itself)
     /// when its close button is clicked. <see cref="TabCloseRequested"/> is raised first and can
     /// cancel it by setting Handled.</summary>
-    public ICommand? CloseTabCommand
-    {
-        get => GetValue(CloseTabCommandProperty);
-        set => SetValue(CloseTabCommandProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial ICommand? CloseTabCommand { get; set; }
 
     /// <summary>Invoked when the "+" button is clicked (after <see cref="AddTabRequested"/>).</summary>
-    public ICommand? AddTabCommand
-    {
-        get => GetValue(AddTabCommandProperty);
-        set => SetValue(AddTabCommandProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial ICommand? AddTabCommand { get; set; }
 
     /// <summary>Content placed before the tabs (an app menu, a logo...).</summary>
     public object? StripHeader
@@ -162,9 +127,10 @@ public class CascadiaTabControl : TabControl
         private set => SetValue(StripInsetsProperty, value);
     }
 
-    public static bool GetIsClosable(TabItem tab) => tab.GetValue(IsClosableProperty);
-    public static void SetIsClosable(TabItem tab, bool value) => tab.SetValue(IsClosableProperty, value);
-
+    /// <summary>Whether a tab shows its close button. <see cref="CanCloseTabs"/> sets it on every tab
+    /// at style priority, so a tab can still opt out locally (e.g. a pinned "Home" tab).</summary>
+    [GeneratedAttachedProperty]
+    public static partial bool GetIsClosable(TabItem tab);
     public event EventHandler<TabEventArgs>? TabCloseRequested
     {
         add => AddHandler(TabCloseRequestedEvent, value);

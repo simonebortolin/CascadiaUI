@@ -8,25 +8,13 @@ namespace CascadiaUI.Controls;
 /// <see cref="ProgressRing"/> and an optional <see cref="BusyText"/> - for work with no
 /// meaningful progress percentage (scans, renders, network round-trips).
 /// </summary>
-public class BusyArea : ContentControl
+public partial class BusyArea : ContentControl
 {
-    public static readonly StyledProperty<bool> IsBusyProperty =
-        AvaloniaProperty.Register<BusyArea, bool>(nameof(IsBusy));
+    [GeneratedStyledProperty]
+    public partial bool IsBusy { get; set; }
 
-    public static readonly StyledProperty<string?> BusyTextProperty =
-        AvaloniaProperty.Register<BusyArea, string?>(nameof(BusyText));
-
-    public bool IsBusy
-    {
-        get => GetValue(IsBusyProperty);
-        set => SetValue(IsBusyProperty, value);
-    }
-
-    public string? BusyText
-    {
-        get => GetValue(BusyTextProperty);
-        set => SetValue(BusyTextProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial string? BusyText { get; set; }
 
     static BusyArea()
     {

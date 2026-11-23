@@ -20,41 +20,8 @@ namespace CascadiaUI.Controls;
 /// <see cref="CascadiaTabControl.IsInTitleBar"/> set then puts its tabs up there.
 /// </para>
 /// </remarks>
-public class CascadiaWindow : Window
+public partial class CascadiaWindow : Window
 {
-    public static readonly StyledProperty<bool> ExtendContentIntoTitleBarProperty =
-        AvaloniaProperty.Register<CascadiaWindow, bool>(nameof(ExtendContentIntoTitleBar));
-
-    public static readonly StyledProperty<object?> TitleBarContentProperty =
-        AvaloniaProperty.Register<CascadiaWindow, object?>(nameof(TitleBarContent));
-
-    public static readonly StyledProperty<bool> ShowTitleProperty =
-        AvaloniaProperty.Register<CascadiaWindow, bool>(nameof(ShowTitle), true);
-
-    public static readonly StyledProperty<double> TitleBarHeightProperty =
-        AvaloniaProperty.Register<CascadiaWindow, double>(nameof(TitleBarHeight), 42);
-
-    /// <summary>
-    /// Room taken by the platform caption buttons on each side of the title bar (left on macOS,
-    /// right elsewhere). Inherited, so anything inside the window - a title-bar tab strip in
-    /// particular - can pad itself out of their way.
-    /// </summary>
-    public static readonly AttachedProperty<Thickness> CaptionInsetsProperty =
-        AvaloniaProperty.RegisterAttached<CascadiaWindow, Control, Thickness>("CaptionInsets", inherits: true);
-
-    /// <summary>
-    /// Marks an element (and everything inside it that doesn't say otherwise) as window-drag area.
-    /// Interactive children inside it should set <see cref="IsTitleBarInteractiveProperty"/>.
-    /// </summary>
-    public static readonly AttachedProperty<bool> IsTitleBarDragAreaProperty =
-        AvaloniaProperty.RegisterAttached<CascadiaWindow, Control, bool>("IsTitleBarDragArea");
-
-    /// <summary>
-    /// Keeps an element clickable even though it sits in a <see cref="IsTitleBarDragAreaProperty"/> area.
-    /// </summary>
-    public static readonly AttachedProperty<bool> IsTitleBarInteractiveProperty =
-        AvaloniaProperty.RegisterAttached<CascadiaWindow, Control, bool>("IsTitleBarInteractive");
-
     static CascadiaWindow()
     {
         IsTitleBarDragAreaProperty.Changed.AddClassHandler<Control>((c, e) =>
@@ -76,38 +43,40 @@ public class CascadiaWindow : Window
     }
 
     /// <summary>Lets the content draw into the title bar strip (no Cascadia title bar is drawn).</summary>
-    public bool ExtendContentIntoTitleBar
-    {
-        get => GetValue(ExtendContentIntoTitleBarProperty);
-        set => SetValue(ExtendContentIntoTitleBarProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial bool ExtendContentIntoTitleBar { get; set; }
 
     /// <summary>Extra content placed in the title bar after the title (search box, buttons...).
     /// Interactive elements in it are made clickable automatically.</summary>
-    public object? TitleBarContent
-    {
-        get => GetValue(TitleBarContentProperty);
-        set => SetValue(TitleBarContentProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial object? TitleBarContent { get; set; }
 
-    public bool ShowTitle
-    {
-        get => GetValue(ShowTitleProperty);
-        set => SetValue(ShowTitleProperty, value);
-    }
+    [GeneratedStyledProperty(DefaultValue = true)]
+    public partial bool ShowTitle { get; set; }
 
-    public double TitleBarHeight
-    {
-        get => GetValue(TitleBarHeightProperty);
-        set => SetValue(TitleBarHeightProperty, value);
-    }
+    [GeneratedStyledProperty(DefaultValue = 42)]
+    public partial double TitleBarHeight { get; set; }
 
-    public static Thickness GetCaptionInsets(Control control) => control.GetValue(CaptionInsetsProperty);
-    public static void SetCaptionInsets(Control control, Thickness value) => control.SetValue(CaptionInsetsProperty, value);
-    public static bool GetIsTitleBarDragArea(Control control) => control.GetValue(IsTitleBarDragAreaProperty);
-    public static void SetIsTitleBarDragArea(Control control, bool value) => control.SetValue(IsTitleBarDragAreaProperty, value);
-    public static bool GetIsTitleBarInteractive(Control control) => control.GetValue(IsTitleBarInteractiveProperty);
-    public static void SetIsTitleBarInteractive(Control control, bool value) => control.SetValue(IsTitleBarInteractiveProperty, value);
+    /// <summary>
+    /// Room taken by the platform caption buttons on each side of the title bar (left on macOS,
+    /// right elsewhere). Inherited, so anything inside the window - a title-bar tab strip in
+    /// particular - can pad itself out of their way.
+    /// </summary>
+    [GeneratedAttachedProperty(Inherits = true)]
+    public static partial Thickness GetCaptionInsets(Control control);
+
+    /// <summary>
+    /// Marks an element (and everything inside it that doesn't say otherwise) as window-drag area.
+    /// Interactive children inside it should set <see cref="IsTitleBarInteractiveProperty"/>.
+    /// </summary>
+    [GeneratedAttachedProperty]
+    public static partial bool GetIsTitleBarDragArea(Control control);
+
+    /// <summary>
+    /// Keeps an element clickable even though it sits in a <see cref="IsTitleBarDragAreaProperty"/> area.
+    /// </summary>
+    [GeneratedAttachedProperty]
+    public static partial bool GetIsTitleBarInteractive(Control control);
 
     /// <summary>
     /// Width reserved for the caption buttons on the side the platform puts them. Windows' and the

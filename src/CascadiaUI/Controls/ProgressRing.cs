@@ -5,25 +5,13 @@ using Avalonia.Controls.Primitives;
 namespace CascadiaUI.Controls;
 
 /// <summary>An indeterminate spinner: an accent arc sweeping round a faint track.</summary>
-public class ProgressRing : TemplatedControl
+public partial class ProgressRing : TemplatedControl
 {
-    public static readonly StyledProperty<bool> IsActiveProperty =
-        AvaloniaProperty.Register<ProgressRing, bool>(nameof(IsActive), true);
+    [GeneratedStyledProperty(DefaultValue = true)]
+    public partial bool IsActive { get; set; }
 
-    public static readonly StyledProperty<double> StrokeThicknessProperty =
-        AvaloniaProperty.Register<ProgressRing, double>(nameof(StrokeThickness), 3);
-
-    public bool IsActive
-    {
-        get => GetValue(IsActiveProperty);
-        set => SetValue(IsActiveProperty, value);
-    }
-
-    public double StrokeThickness
-    {
-        get => GetValue(StrokeThicknessProperty);
-        set => SetValue(StrokeThicknessProperty, value);
-    }
+    [GeneratedStyledProperty(DefaultValue = 3)]
+    public partial double StrokeThickness { get; set; }
 
     static ProgressRing()
     {

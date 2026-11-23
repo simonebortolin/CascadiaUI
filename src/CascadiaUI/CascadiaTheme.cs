@@ -34,7 +34,7 @@ public enum CascadiaDensity
 /// &lt;/Application.Styles&gt;
 /// </code>
 /// </remarks>
-public class CascadiaTheme : Styles
+public partial class CascadiaTheme : Styles
 {
     /// <summary>The default accent: a deep, slightly teal green that keeps white text on accent
     /// buttons at WCAG AA (4.8:1).</summary>
@@ -42,9 +42,6 @@ public class CascadiaTheme : Styles
 
     public static readonly StyledProperty<Color> AccentProperty =
         AvaloniaProperty.Register<CascadiaTheme, Color>(nameof(Accent), DefaultAccent);
-
-    public static readonly StyledProperty<CascadiaDensity> DensityProperty =
-        AvaloniaProperty.Register<CascadiaTheme, CascadiaDensity>(nameof(Density));
 
     private static readonly Uri BaseUri = new("avares://CascadiaUI/");
 
@@ -77,11 +74,8 @@ public class CascadiaTheme : Styles
     }
 
     /// <summary>Control sizing, see <see cref="CascadiaDensity"/>.</summary>
-    public CascadiaDensity Density
-    {
-        get => GetValue(DensityProperty);
-        set => SetValue(DensityProperty, value);
-    }
+    [GeneratedStyledProperty]
+    public partial CascadiaDensity Density { get; set; }
 
     /// <summary>The first <see cref="CascadiaTheme"/> registered on the current application, if any -
     /// handy for runtime accent/density switches from code.</summary>

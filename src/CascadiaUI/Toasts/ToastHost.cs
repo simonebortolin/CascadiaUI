@@ -13,34 +13,16 @@ namespace CascadiaUI.Toasts;
 /// a <c>Panel</c> spanning the view so it floats above everything; it lets clicks through
 /// everywhere except on the toasts themselves.
 /// </summary>
-public class ToastHost : TemplatedControl
+public partial class ToastHost : TemplatedControl
 {
-    public static readonly StyledProperty<ToastManager?> ManagerProperty =
-        AvaloniaProperty.Register<ToastHost, ToastManager?>(nameof(Manager));
+    [GeneratedStyledProperty]
+    public partial ToastManager? Manager { get; set; }
 
-    public static readonly StyledProperty<HorizontalAlignment> ToastHorizontalAlignmentProperty =
-        AvaloniaProperty.Register<ToastHost, HorizontalAlignment>(nameof(ToastHorizontalAlignment), HorizontalAlignment.Right);
+    [GeneratedStyledProperty(DefaultValue = HorizontalAlignment.Right)]
+    public partial HorizontalAlignment ToastHorizontalAlignment { get; set; }
 
-    public static readonly StyledProperty<VerticalAlignment> ToastVerticalAlignmentProperty =
-        AvaloniaProperty.Register<ToastHost, VerticalAlignment>(nameof(ToastVerticalAlignment), VerticalAlignment.Bottom);
-
-    public ToastManager? Manager
-    {
-        get => GetValue(ManagerProperty);
-        set => SetValue(ManagerProperty, value);
-    }
-
-    public HorizontalAlignment ToastHorizontalAlignment
-    {
-        get => GetValue(ToastHorizontalAlignmentProperty);
-        set => SetValue(ToastHorizontalAlignmentProperty, value);
-    }
-
-    public VerticalAlignment ToastVerticalAlignment
-    {
-        get => GetValue(ToastVerticalAlignmentProperty);
-        set => SetValue(ToastVerticalAlignmentProperty, value);
-    }
+    [GeneratedStyledProperty(DefaultValue = VerticalAlignment.Bottom)]
+    public partial VerticalAlignment ToastVerticalAlignment { get; set; }
 
     public ToastHost()
     {
