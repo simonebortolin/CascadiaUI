@@ -2,7 +2,7 @@
   <Import Project="BuildVersion.props" />
 
   <PropertyGroup>
-    <AvaloniaVersion>12.1.4</AvaloniaVersion>
+    <AvaloniaVersion>12.2.0</AvaloniaVersion>
     <DotNetTfm>net10.0</DotNetTfm>
     <Nullable>enable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
